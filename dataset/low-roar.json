@@ -1,0 +1,78 @@
+[
+    {
+      "ID": 1, 
+      "AlbumTitle": "Low Roar",
+      "CoverImage": "low-roar.jpeg",
+      "Released": 2011,
+      "Length": "53:37",
+      "Label": "Tonequake Records",
+      "Description": "Low Roar is the debut album by the American-Icelandic musical project Low Roar, released on November 1, 2011, through Tonequake Records.[2] \"Help Me,\" the album's eighth track, was featured in the animated documentary film Flee. The song \"Patience\", along with many other songs from this album, was featured in the videogame Death Stranding.",
+      "YoutubeURL": "https://www.youtube.com/watch?v=3zJsumSoMMY&list=OLAK5uy_nxRQwOGYakDEWyzIbhwOMRgfgYyCskQ_M",
+      "SpotifyURL": "https://open.spotify.com/album/3lETJkavciTauiSyOV1gZC",
+      "AppleURL": "https://music.apple.com/us/album/low-roar/905267810",
+      "WikiURL": "https://en.wikipedia.org/wiki/Low_Roar_(album)",
+      "Tracks": [
+        {
+          "Name": "Give Up",
+          "Length": "4:12",
+          "Lyrics": "I won't wake\r\nA wealthy man someday\r\n'Cause the sun, don't follow me\r\nI won't wake\r\nWithout a song to sing\r\nNothing to some\r\nEverything to me\r\nAnd in my worst\r\nI'll do my best\r\nTo make it seem\r\nLike I'm happy\r\n'Cause I've grown numb\r\nDry as my tear ducts\r\nI've grown dumb\r\nAnd empty\r\nBut don't give up on me\r\nGive up on me\r\nGive up on me"
+        },
+        {
+          "Name": "Just a Habit",
+          "Length": "3:29",
+          "Lyrics": "Could you point me towards\r\nA quiet gathering\r\nFull of bugs and holes\r\nWhere any word said to you\r\nHolds a liquored, puzzled truth\r\nIt's just a habit\r\nIt's just a habit\r\nIt's just a habit\r\nIf I slur a bit\r\nIt's just because I'm confused\r\nDon't think much of it\r\nMy days belong to you\r\nIf you're kind, my nights can too\r\nIt's just a habit\r\nIt's just a habit\r\nIt's just a habit"
+        },
+        {
+          "Name": "Nobody Else",
+          "Length": "4:58",
+          "Lyrics": "Under the rug\r\nOld shadows inside\r\nWait for their moment\r\nThey plan their surprise\r\nA confetti supply\r\nWhen I’m feeling feeble\r\nI swear that it won’t happen again\r\nThere’s nobody else, there’s nobody else\r\nThere’s nobody else, there’s nobody else\r\nI swear that it won't happen again\r\nWe’ve become lost\r\nShine lights in the past\r\nNo sign of a way out\r\nAnd our cryptic love\r\nWith time it gets worse\r\nIt builds up behind us\r\nI swear that it won’t happen again\r\nThere’s nobody else, there’s nobody else\r\nThere’s nobody else, there’s nobody else\r\nThere’s nobody else, there’s nobody else\r\nI swear that it won’t happen again"
+        },
+        {
+          "Name": "Patience",
+          "Length": "5:46",
+          "Lyrics": "Sick of losing my patience\r\nOut of time, lacking rhythm\r\nBarely conscious, oversensitized\r\nFeeling weaker as I stumble around\r\nGet out of my mind\r\nGet out of my mind\r\nIn the morning rests the paper\r\nHeavy snowfall wakes the neighbours\r\nThe alarm calls\r\nI clean out my eyes\r\nFeeling nauseous\r\nAs the world spins around\r\nGet out of my mind\r\nGet out of my mind"
+        },
+        {
+          "Name": "Low Roar",
+          "Length": "2:16",
+          "Lyrics": "Don't give up now\r\nDefy\r\nDefy"
+        },
+        {
+          "Name": "Friends Make Garbage (Good Friends Take It Out)",
+          "Length": "5:35",
+          "Lyrics": "We were just kids\r\nWith visions and hearts that coincide\r\nClimb aboard our ship\r\nWe're going whether or not that you like\r\nWhether or not that you like\r\nWe sailed across the sea\r\nAimlessly, no direction or timeline\r\nThe shore we'd come to find\r\nWe'd seen before, never spoke or shared a word\r\nNo need, your true thoughts they can't be heard\r\nThey're too beautiful for words\r\nDon't follow roads paved in gold\r\nThey will only let you down\r\nWhat's the fun when you can't share what you've found\r\nYears to build, in a second it's brought down\r\nNo one will comfort me\r\nWill know me or what's going on inside\r\nA vacant hole will remain that way for life\r\nTo remind me where the both of you once lied\r\nI've learned more from this\r\nThan anything I have read in my whole life\r\nI bet you both laugh at that line\r\nSee upcoming pop shows\r\nGet tickets for your favorite artists\r\nYou might also like\r\nLET GO
+          Central Cee
+          Double Trouble
+          Low Roar
+          Easy Way Out
+          Low Roar
+          I miss the feel of it
+          Your touch, your kiss weighs heavy on my mind
+          Our moment forever sealed in time
+          Our secret as much yours as is mine
+          All logic we have surely left defied
+          I will hold you till I die"
+        },
+        {
+          "Name": "",
+          "Length": "",
+          "Lyrics": ""
+        },
+        {
+          "Name": "",
+          "Length": "",
+          "Lyrics": ""
+        },
+        {
+          "Name": "",
+          "Length": "",
+          "Lyrics": ""
+        },
+        {
+          "Name": "",
+          "Length": "",
+          "Lyrics": ""
+        },
+      ]
+    }
+  ]
