@@ -2,7 +2,7 @@
     {
       "ID": 1, 
       "AlbumTitle": "Low Roar",
-      "CoverImage": "low-roar.jpeg",
+      "CoverImage": "../client/images/low-roar.jpeg",
       "Released": 2011,
       "Length": "53:37",
       "Label": "Tonequake Records",
@@ -60,18 +60,38 @@
         {
           "Name": "Puzzle",
           "Length": "3:18",
-          "Lyrics": ""
+          "Lyrics": "Let's go\r\nWarming round\r\n\nLet's go\r\nWarming round\r\n\nLet's go\r\nWarming round\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nRoaming around"
         },
         {
           "Name": "Because We Have To",
           "Length": "3:55",
-          "Lyrics": ""
+          "Lyrics": "A calm sea awaits, blue skies and sun\r\nInviting and smiling and dancing around\r\n\nThe wind pushes north, through the straits, towards the clouds\r\nThe sun rests her head on the water around\r\nBy morning, our voices will sink with their shells\r\n\nHer belly exposed, up towards the sun\r\nLays hindered and splintered and makes not a sound\r\n\nAhead of her bow, a doll chain takes form\r\nOf women and children that someone adored\r\nIn a last dance, hand in hand, they float all around"
         },
         {
           "Name": "Tonight, Tonight, Tonight",
           "Length": "7:56",
-          "Lyrics": ""
+          "Lyrics": "Tonight, we're washing off the blood\r\nTonight, tonight\r\nAnd I've tried to give you what you want\r\nWhat is it that you want?\r\nDay spent with not a word to say\r\nRoutine, red lie\r\nSo jump, we'll sit and burn a lie\r\nWe'd rather burn than fight\r\n\nBut I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long\r\nWe've become so good at fooling all\r\nSo good, we often fool ourselves\r\n\nWe think twice and always turn around\r\nA comfortable frown\r\nSo jump but sit and burn a lie\r\nThere's no wrong, no right\r\n\nAnd I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long"
         },
+        {
+          "Name": "",
+          "Length": "",
+          "Lyrics": ""
+        }
+      ]
+    },
+    {
+      "ID": 2, 
+      "AlbumTitle": "0",
+      "CoverImage": "../client/images/0.jpg",
+      "Released": 2014,
+      "Length": "68:14",
+      "Label": "Tonequake Records",
+      "Description": "0 is the second studio album by the Icelandic musical project Low Roar, released on July 8, 2014 through Tonequake Records.\r\n\n\"I'll Keep Coming\" and \"Easy Way Out\" became well known in 2016 when they were featured as the trailer music for Hideo Kojima's video game Death Stranding, in addition to an episode of Killjoys. \"Breathe In\" was featured in the animated documentary film Flee. The artwork, designed by Anna Giudice and Valeria Morando won the contest \"Best Design\" organized by FÍT.",
+      "YoutubeURL": "https://www.youtube.com/watch?v=JUdTyB6LX5M&list=PLOLnBml8WYg9BNnCOiFz8YnT1a4_foE0d",
+      "SpotifyURL": "https://open.spotify.com/album/4G3ZBFg8MpTSDxDQ3m2BCb",
+      "AppleURL": "https://music.apple.com/us/album/0/905276496",
+      "WikiURL": "https://en.wikipedia.org/wiki/0_(album)",
+      "Tracks": [
         {
           "Name": "",
           "Length": "",

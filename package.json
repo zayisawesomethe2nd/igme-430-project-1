@@ -1,0 +1,22 @@
+{
+  "name": "igme-430-project-1",
+  "version": "1.0.0",
+  "description": "Zay's Project 1 for IGME-430.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "pretest": "eslint ./src --fix",
+    "test": "echo \"Tests Complete\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "igme-430-project-1"
+  },
+  "author": "Zay A.",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.32.0"
+  }
+}
