@@ -30,8 +30,10 @@ const parseBody = (request, response, handler) => {
 };
 
 const handlePost = (request, response, parsedUrl) => {
-    if (parsedUrl.pathname === '/addUser') {
-        parseBody(request, response, jsonHandler.addUser);
+    if (parsedUrl.pathname === '/addSong') {
+        parseBody(request, response, jsonHandler.addSong);
+    } else if (parsedUrl.pathname === '/addRating') {
+        parseBody(request, response, jsonHandler.addRating);
     }
 };
 

@@ -1,102 +1,117 @@
 [
-    {
-      "ID": 1, 
-      "AlbumTitle": "Low Roar",
-      "CoverImage": "../client/images/low-roar.png",
-      "Released": 2011,
-      "Length": "53:37",
-      "Label": "Tonequake Records",
-      "Description": "Low Roar is the debut album by the American-Icelandic musical project Low Roar, released on November 1, 2011, through Tonequake Records. \"Help Me,\" the album's eighth track, was featured in the animated documentary film Flee. The song \"Patience\", along with many other songs from this album, was featured in the videogame Death Stranding.",
-      "YoutubeURL": "https://www.youtube.com/watch?v=3zJsumSoMMY&list=OLAK5uy_nxRQwOGYakDEWyzIbhwOMRgfgYyCskQ_M",
-      "SpotifyURL": "https://open.spotify.com/album/3lETJkavciTauiSyOV1gZC",
-      "AppleURL": "https://music.apple.com/us/album/low-roar/905267810",
-      "WikiURL": "https://en.wikipedia.org/wiki/Low_Roar_(album)",
-      "Tracks": [
-        {
-          "Name": "Give Up",
-          "Length": "4:12",
-          "Lyrics": "I won't wake\r\nA wealthy man someday\r\n'Cause the sun, don't follow me\r\n\nAnd I won't wake\r\nWithout a song to sing\r\nNothing to some\r\nEverything to me\r\n\nAnd in my worst\r\nI'll do my best\r\nTo make it seem\r\nLike I'm happy\r\n\n'Cause I've grown numb\r\nDry as my tear ducts\r\nI've grown dumb\r\nAnd empty\r\n\nBut don't give up on me\r\nGive up on me\r\nGive up on me"
-        },
-        {
-          "Name": "Just a Habit",
-          "Length": "3:29",
-          "Lyrics": "Could you point me towards\r\nA quiet gathering\r\nFull of bugs and holes\r\nWhere any word said to you\r\nHolds a liquored, puzzled truth\r\n\nIt's just a habit\r\nIt's just a habit\r\nIt's just a habit\r\n\nIf I slur a bit\r\nIt's just because I'm confused\r\nDon't think much of it\r\nMy days belong to you\r\nIf you're kind, my nights can too\r\n\nIt's just a habit\r\nIt's just a habit\r\nIt's just a habit"
-        },
-        {
-          "Name": "Nobody Else",
-          "Length": "4:58",
-          "Lyrics": "Under the rug\r\nOld shadows inside\r\nWait for their moment\r\n\nThey plan their surprise\r\nA confetti supply\r\nWhen I'm feeling feeble\r\n\nI swear that it won't happen again\r\nThere's nobody else\r\nThere's nobody else\r\nThere's nobody else\r\nThere's nobody else\r\nI swear that it won't happen again\r\n\nWe've become lost\r\nShine lights in the past\r\nNo sign of a way out\r\n\nOur cryptic love\r\nWith time it gets worse\r\nIt builds up behind us\r\n\nI swear that it won't happen again\r\nThere's nobody else\r\nThere's nobody else\r\nThere's nobody else\r\nThere's nobody else\r\nThere's nobody else\r\nThere's nobody else\r\nI swear that it won't happen again"
-        },
-        {
-          "Name": "Patience",
-          "Length": "5:46",
-          "Lyrics": "Sick of losing my patience\r\nOut of time, lacking rhythm\r\nBarely conscious, oversensitized\r\nFeeling weaker as I stumble around\r\n\nGet out of my mind\r\nGet out of my mind\r\n\nIn the morning rests the paper\r\nHeavy snowfall wakes the neighbours\r\nThe alarm calls\r\nI clean out my eyes\r\nFeeling nauseous\r\nAs the world spins around\r\n\nGet out of my mind\r\nGet out of my mind"
-        },
-        {
-          "Name": "Low Roar",
-          "Length": "2:16",
-          "Lyrics": ""
-        },
-        {
-          "Name": "Friends Make Garbage (Good Friends Take It Out)",
-          "Length": "5:35",
-          "Lyrics": "We were just kids\r\nWith visions and hearts that coincide\r\nClimb aboard our ship\r\nWe're going whether or not that you like\r\n\nWhether or not that you like\r\nWe sailed across the sea\r\nAimlessly, no direction or timeline\r\nThe shore we'd come to find\r\nWe'd seen before, never spoke or shared a word\r\nNo need, your true thoughts they can't be heard\r\nThey're too beautiful for words\r\n\nDon't follow roads paved in gold\r\nThey will only let you down\r\nWhat's the fun when you can't share what you've found\r\nYears to build, in a second it's brought down\r\n\nNo one will comfort me\r\nWill know me or what's going on inside\r\nA vacant hole will remain that way for life\r\nTo remind me where the both of you once lied\r\n\nI've learned more from this\r\nThan anything I have read in my whole life\r\nI bet you both laugh at that line\r\n\nI miss the feel of it\r\nYour touch, your kiss weighs heavy on my mind\r\nOur moment forever sealed in time\r\nOur secret as much yours as is mine\r\nAll logic we have surely left defied\r\nI will hold you till I die"
-        },
-        {
-          "Name": "The Painter",
-          "Length": "4:45",
-          "Lyrics": "There's a painter who stares at miles of white\r\nAll around\r\nEach color he's dreamed is lost in thought and can't be found\r\nCan't be found\r\n\nTakes a walk through his head to ask his friends\r\nIf they'd come out\r\nCome out from your shells, come chat with me and walk around\r\nWalk around\r\n\nThis is all ours to fuck with\r\nThis is all ours to taunt\r\nThis is our home, our stomping ground\r\n\nWhat's stopping us?\r\nWhat's stopping us?\r\nWhat's stopping us?\r\n\nWake up from your sleep, they're only dreams\r\nNot solid ground\r\nYou'd keep your eyes closed if you had known\r\nWhat I have found\r\nWhat I have found\r\n\nCan you blame me for not wanting both feet\r\nOn the ground\r\nWhile you follow routine and waste your days\r\nI'm in the clouds\r\nRaining down\r\n\nThis is all ours to fuck with\r\nThis is all ours to taunt\r\nThis is our home, our stomping ground\r\n\nWhat's stopping us?\r\nWhat's stopping us?\r\nWhat's stopping us?"
-        },
-        {
-          "Name": "Help Me",
-          "Length": "3:51",
-          "Lyrics": "We built a house\r\nOn sacred ground\r\nWhat happened out there\r\nNow happens in here\r\nCold sweats and couches\r\nThis was the worst of my fears\r\n\nHelp me out\r\nHelp me out\r\n\nBones made of glass\r\nI'm starving\r\nFor someone to fill\r\nMy blood, my skin\r\n\nHelp me out\r\nHelp me out\r\nHelp me out\r\nHelp me out\r\n\nWhat's left to talk about?\r\nWhat's left to talk about?"
-        },
-        {
-          "Name": "Roiling Over",
-          "Length": "5:07",
-          "Lyrics": "I'm turning over inside my grave\r\nYou're waking up to face a brand new day\r\nThe thoughts I tried to sway would not behave\r\nI'm waiting for you to be late\r\nI wait, I wait\r\n\nI'm making up my mind to not decide\r\nYou're living up to your hollow disguise\r\nThe fateful forced its face upon the prize\r\nI'm making excuses for my\r\nReprise, reprise\r\n\nI'm helpless and hopeful to remain so\r\nYou're reckless and ready to have a go\r\nThe silence sent a scream into the cold\r\nI'm pessimistic even though\r\nI hope, I hope\r\n\nI'm turning over inside my grave\r\nI'm waiting for you to be late\r\nI wait, I wait"
-        },
-        {
-          "Name": "Puzzle",
-          "Length": "3:18",
-          "Lyrics": "Let's go\r\nWarming round\r\n\nLet's go\r\nWarming round\r\n\nLet's go\r\nWarming round\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nRoaming around"
-        },
-        {
-          "Name": "Because We Have To",
-          "Length": "3:55",
-          "Lyrics": "A calm sea awaits, blue skies and sun\r\nInviting and smiling and dancing around\r\n\nThe wind pushes north, through the straits, towards the clouds\r\nThe sun rests her head on the water around\r\nBy morning, our voices will sink with their shells\r\n\nHer belly exposed, up towards the sun\r\nLays hindered and splintered and makes not a sound\r\n\nAhead of her bow, a doll chain takes form\r\nOf women and children that someone adored\r\nIn a last dance, hand in hand, they float all around"
-        },
-        {
-          "Name": "Tonight, Tonight, Tonight",
-          "Length": "7:56",
-          "Lyrics": "Tonight, we're washing off the blood\r\nTonight, tonight\r\nAnd I've tried to give you what you want\r\nWhat is it that you want?\r\nDay spent with not a word to say\r\nRoutine, red lie\r\nSo jump, we'll sit and burn a lie\r\nWe'd rather burn than fight\r\n\nBut I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long\r\nWe've become so good at fooling all\r\nSo good, we often fool ourselves\r\n\nWe think twice and always turn around\r\nA comfortable frown\r\nSo jump but sit and burn a lie\r\nThere's no wrong, no right\r\n\nAnd I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long"
-        },
-        {
-          "Name": "",
-          "Length": "",
-          "Lyrics": ""
-        }
-      ]
-    },
-    {
-      "ID": 2, 
-      "AlbumTitle": "0",
-      "CoverImage": "../client/images/0.png",
-      "Released": 2014,
-      "Length": "68:14",
-      "Label": "Tonequake Records",
-      "Description": "0 is the second studio album by the Icelandic musical project Low Roar, released on July 8, 2014 through Tonequake Records.\r\n\n\"I'll Keep Coming\" and \"Easy Way Out\" became well known in 2016 when they were featured as the trailer music for Hideo Kojima's video game Death Stranding, in addition to an episode of Killjoys. \"Breathe In\" was featured in the animated documentary film Flee. The artwork, designed by Anna Giudice and Valeria Morando won the contest \"Best Design\" organized by FÍT.",
-      "YoutubeURL": "https://www.youtube.com/watch?v=JUdTyB6LX5M&list=PLOLnBml8WYg9BNnCOiFz8YnT1a4_foE0d",
-      "SpotifyURL": "https://open.spotify.com/album/4G3ZBFg8MpTSDxDQ3m2BCb",
-      "AppleURL": "https://music.apple.com/us/album/0/905276496",
-      "WikiURL": "https://en.wikipedia.org/wiki/0_(album)",
-      "Tracks": [
-        {
-          "Name": "",
-          "Length": "",
-          "Lyrics": ""
-        }
-      ]
-    }
-  ]
+  {
+    "ID": 1,
+    "AlbumTitle": "Low Roar",
+    "CoverImage": "../client/images/low-roar.png",
+    "Released": 2011,
+    "Length": "53:37",
+    "Label": "Tonequake Records",
+    "Description": "Low Roar is the debut album by the American-Icelandic musical project Low Roar, released on November 1, 2011, through Tonequake Records. \"Help Me,\" the album's eighth track, was featured in the animated documentary film Flee. The song \"Patience\", along with many other songs from this album, was featured in the videogame Death Stranding.",
+    "YoutubeURL": "https://www.youtube.com/watch?v=3zJsumSoMMY&list=OLAK5uy_nxRQwOGYakDEWyzIbhwOMRgfgYyCskQ_M",
+    "SpotifyURL": "https://open.spotify.com/album/3lETJkavciTauiSyOV1gZC",
+    "AppleURL": "https://music.apple.com/us/album/low-roar/905267810",
+    "WikiURL": "https://en.wikipedia.org/wiki/Low_Roar_(album)",
+    "Tracks": [
+      {
+        "Name": "Give Up",
+        "Length": "4:12",
+        "Lyrics": "I won't wake\r\nA wealthy man someday\r\n'Cause the sun, don't follow me\r\n\nAnd I won't wake\r\nWithout a song to sing\r\nNothing to some\r\nEverything to me\r\n\nAnd in my worst\r\nI'll do my best\r\nTo make it seem\r\nLike I'm happy\r\n\n'Cause I've grown numb\r\nDry as my tear ducts\r\nI've grown dumb\r\nAnd empty\r\n\nBut don't give up on me\r\nGive up on me\r\nGive up on me"
+      },
+      {
+        "Name": "Just a Habit",
+        "Length": "3:29",
+        "Lyrics": "Could you point me towards\r\nA quiet gathering\r\nFull of bugs and holes\r\nWhere any word said to you\r\nHolds a liquored, puzzled truth\r\n\nIt's just a habit\r\nIt's just a habit\r\nIt's just a habit\r\n\nIf I slur a bit\r\nIt's just because I'm confused\r\nDon't think much of it\r\nMy days belong to you\r\nIf you're kind, my nights can too\r\n\nIt's just a habit\r\nIt's just a habit\r\nIt's just a habit"
+      },
+      {
+        "Name": "Nobody Else",
+        "Length": "4:58",
+        "Lyrics": "Under the rug\r\nOld shadows inside\r\nWait for their moment\r\n\nThey plan their surprise\r\nA confetti supply\r\nWhen I'm feeling feeble\r\n\nI swear that it won't happen again\r\nThere's nobody else\r\nThere's nobody else\r\nThere's nobody else\r\nThere's nobody else\r\nI swear that it won't happen again\r\n\nWe've become lost\r\nShine lights in the past\r\nNo sign of a way out\r\n\nOur cryptic love\r\nWith time it gets worse\r\nIt builds up behind us\r\n\nI swear that it won't happen again\r\nThere's nobody else\r\nThere's nobody else\r\nThere's nobody else\r\nThere's nobody else\r\nThere's nobody else\r\nThere's nobody else\r\nI swear that it won't happen again"
+      },
+      {
+        "Name": "Patience",
+        "Length": "5:46",
+        "Lyrics": "Sick of losing my patience\r\nOut of time, lacking rhythm\r\nBarely conscious, oversensitized\r\nFeeling weaker as I stumble around\r\n\nGet out of my mind\r\nGet out of my mind\r\n\nIn the morning rests the paper\r\nHeavy snowfall wakes the neighbours\r\nThe alarm calls\r\nI clean out my eyes\r\nFeeling nauseous\r\nAs the world spins around\r\n\nGet out of my mind\r\nGet out of my mind"
+      },
+      {
+        "Name": "Low Roar",
+        "Length": "2:16",
+        "Lyrics": ""
+      },
+      {
+        "Name": "Friends Make Garbage (Good Friends Take It Out)",
+        "Length": "5:35",
+        "Lyrics": "We were just kids\r\nWith visions and hearts that coincide\r\nClimb aboard our ship\r\nWe're going whether or not that you like\r\n\nWhether or not that you like\r\nWe sailed across the sea\r\nAimlessly, no direction or timeline\r\nThe shore we'd come to find\r\nWe'd seen before, never spoke or shared a word\r\nNo need, your true thoughts they can't be heard\r\nThey're too beautiful for words\r\n\nDon't follow roads paved in gold\r\nThey will only let you down\r\nWhat's the fun when you can't share what you've found\r\nYears to build, in a second it's brought down\r\n\nNo one will comfort me\r\nWill know me or what's going on inside\r\nA vacant hole will remain that way for life\r\nTo remind me where the both of you once lied\r\n\nI've learned more from this\r\nThan anything I have read in my whole life\r\nI bet you both laugh at that line\r\n\nI miss the feel of it\r\nYour touch, your kiss weighs heavy on my mind\r\nOur moment forever sealed in time\r\nOur secret as much yours as is mine\r\nAll logic we have surely left defied\r\nI will hold you till I die"
+      },
+      {
+        "Name": "The Painter",
+        "Length": "4:45",
+        "Lyrics": "There's a painter who stares at miles of white\r\nAll around\r\nEach color he's dreamed is lost in thought and can't be found\r\nCan't be found\r\n\nTakes a walk through his head to ask his friends\r\nIf they'd come out\r\nCome out from your shells, come chat with me and walk around\r\nWalk around\r\n\nThis is all ours to fuck with\r\nThis is all ours to taunt\r\nThis is our home, our stomping ground\r\n\nWhat's stopping us?\r\nWhat's stopping us?\r\nWhat's stopping us?\r\n\nWake up from your sleep, they're only dreams\r\nNot solid ground\r\nYou'd keep your eyes closed if you had known\r\nWhat I have found\r\nWhat I have found\r\n\nCan you blame me for not wanting both feet\r\nOn the ground\r\nWhile you follow routine and waste your days\r\nI'm in the clouds\r\nRaining down\r\n\nThis is all ours to fuck with\r\nThis is all ours to taunt\r\nThis is our home, our stomping ground\r\n\nWhat's stopping us?\r\nWhat's stopping us?\r\nWhat's stopping us?"
+      },
+      {
+        "Name": "Help Me",
+        "Length": "3:51",
+        "Lyrics": "We built a house\r\nOn sacred ground\r\nWhat happened out there\r\nNow happens in here\r\nCold sweats and couches\r\nThis was the worst of my fears\r\n\nHelp me out\r\nHelp me out\r\n\nBones made of glass\r\nI'm starving\r\nFor someone to fill\r\nMy blood, my skin\r\n\nHelp me out\r\nHelp me out\r\nHelp me out\r\nHelp me out\r\n\nWhat's left to talk about?\r\nWhat's left to talk about?"
+      },
+      {
+        "Name": "Roiling Over",
+        "Length": "5:07",
+        "Lyrics": "I'm turning over inside my grave\r\nYou're waking up to face a brand new day\r\nThe thoughts I tried to sway would not behave\r\nI'm waiting for you to be late\r\nI wait, I wait\r\n\nI'm making up my mind to not decide\r\nYou're living up to your hollow disguise\r\nThe fateful forced its face upon the prize\r\nI'm making excuses for my\r\nReprise, reprise\r\n\nI'm helpless and hopeful to remain so\r\nYou're reckless and ready to have a go\r\nThe silence sent a scream into the cold\r\nI'm pessimistic even though\r\nI hope, I hope\r\n\nI'm turning over inside my grave\r\nI'm waiting for you to be late\r\nI wait, I wait"
+      },
+      {
+        "Name": "Puzzle",
+        "Length": "3:18",
+        "Lyrics": "Let's go\r\nWarming round\r\n\nLet's go\r\nWarming round\r\n\nLet's go\r\nWarming round\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nLet's (go get)\r\nGo (away the crown)\r\nWarming round (they might change in a chain)\r\n\nRoaming around"
+      },
+      {
+        "Name": "Because We Have To",
+        "Length": "3:55",
+        "Lyrics": "A calm sea awaits, blue skies and sun\r\nInviting and smiling and dancing around\r\n\nThe wind pushes north, through the straits, towards the clouds\r\nThe sun rests her head on the water around\r\nBy morning, our voices will sink with their shells\r\n\nHer belly exposed, up towards the sun\r\nLays hindered and splintered and makes not a sound\r\n\nAhead of her bow, a doll chain takes form\r\nOf women and children that someone adored\r\nIn a last dance, hand in hand, they float all around"
+      },
+      {
+        "Name": "Tonight, Tonight, Tonight",
+        "Length": "7:56",
+        "Lyrics": "Tonight, we're washing off the blood\r\nTonight, tonight\r\nAnd I've tried to give you what you want\r\nWhat is it that you want?\r\nDay spent with not a word to say\r\nRoutine, red lie\r\nSo jump, we'll sit and burn a lie\r\nWe'd rather burn than fight\r\n\nBut I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long\r\nWe've become so good at fooling all\r\nSo good, we often fool ourselves\r\n\nWe think twice and always turn around\r\nA comfortable frown\r\nSo jump but sit and burn a lie\r\nThere's no wrong, no right\r\n\nAnd I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long\r\nNo I ain't gonna be here too long, too long"
+      },
+      {
+        "Name": "",
+        "Length": "",
+        "Lyrics": ""
+      }
+    ]
+  },
+  {
+    "ID": 2,
+    "AlbumTitle": "0",
+    "CoverImage": "../client/images/0.png",
+    "Released": 2014,
+    "Length": "68:14",
+    "Label": "Tonequake Records",
+    "Description": "0 is the second studio album by the Icelandic musical project Low Roar, released on July 8, 2014 through Tonequake Records.\r\n\n\"I'll Keep Coming\" and \"Easy Way Out\" became well known in 2016 when they were featured as the trailer music for Hideo Kojima's video game Death Stranding, in addition to an episode of Killjoys. \"Breathe In\" was featured in the animated documentary film Flee. The artwork, designed by Anna Giudice and Valeria Morando won the contest \"Best Design\" organized by FÍT.",
+    "YoutubeURL": "https://www.youtube.com/watch?v=JUdTyB6LX5M&list=PLOLnBml8WYg9BNnCOiFz8YnT1a4_foE0d",
+    "SpotifyURL": "https://open.spotify.com/album/4G3ZBFg8MpTSDxDQ3m2BCb",
+    "AppleURL": "https://music.apple.com/us/album/0/905276496",
+    "WikiURL": "https://en.wikipedia.org/wiki/0_(album)",
+    "Tracks": [
+      {
+        "Name": "",
+        "Length": "",
+        "Lyrics": ""
+      }
+    ]
+  },
+  {
+    "ID": 0,
+    "AlbumTitle": "Unorganized",
+    "CoverImage": "",
+    "Released": "",
+    "Length": "",
+    "Label": "",
+    "Description": "A collection of unorganized songs.",
+    "YoutubeURL": "",
+    "SpotifyURL": "",
+    "AppleURL": "",
+    "WikiURL": "",
+    "Tracks": [
+    ]
+  }
+]

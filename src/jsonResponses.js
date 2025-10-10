@@ -50,12 +50,20 @@ const getSongs = (request, response) => {
 
   for (const album of lowRoarData) {
     for (const track of album.Tracks) {
-      songs.push({
-        CoverImage: album.CoverImage,
-        SongName: track.Name,
-        Length: track.Length,
-        Lyrics: track.Lyrics,
-      });
+        const trackData = {
+            CoverImage: album.CoverImage,
+            SongName: track.Name,
+            Length: track.Length,
+            Lyrics: track.Lyrics,
+        };
+
+        // IF there is a rating, add it to the song array
+        console.log(track.Rating);
+        if (track.Rating !== undefined) {
+            trackData.Rating = track.Rating;
+        }
+        songs.push(trackData);
+
     }
   }
 
@@ -122,7 +130,7 @@ const songSearch = (request, response) => {
         });
     }
 
-    const results = [];
+    const songs = [];
     const titleSearchTerm = title ? title.trim().toLowerCase() : null;
     const yearSearchTerm = year ? year.trim() : null;
 
@@ -134,16 +142,23 @@ const songSearch = (request, response) => {
             if (!track.Name) continue; // skip empty tracks
             if (titleSearchTerm && !track.Name.toLowerCase().includes(titleSearchTerm)) continue;
 
-            results.push({
+            const trackData = {
+                CoverImage: album.CoverImage,
                 SongName: track.Name,
                 Length: track.Length,
                 Lyrics: track.Lyrics,
-                CoverImage: album.CoverImage,
-            });
-        }
+            };
+
+            // IF there is a rating, add it to the song array
+            console.log(track.Rating);
+            if (track.Rating !== undefined) {
+                trackData.Rating = track.Rating;
+            }
+            songs.push(trackData);
+            }
     }
 
-    return respondJSON(request, response, 200, results);
+    return respondJSON(request, response, 200, songs);
 };
 
 // Searches all tracks lyrics for any sign of the inputted lyrics. Then pushes those results
@@ -177,7 +192,107 @@ const lyricalSearch = (request, response) => {
     }
 
     return respondJSON(request, response, 200, results);
-}
+};
+
+const addSong = (request, response) => {
+    const { title, length } = request.body;
+
+    // Validate inputs
+    if (!title || !length) {
+        return respondJSON(request, response, 400, {
+            message: 'Both title and length are required.',
+            id: 'MissingFields',
+        });
+    }
+
+    // get the unorganizedAlbum data field
+    const unorganizedAlbum = lowRoarData.find(album => album.ID === 0);
+    if (!unorganizedAlbum) {
+        return respondJSON(request, response, 500, {
+            message: 'Unorganized album not found in dataset.',
+            id: 'InternalServerError',
+        });
+    }
+    
+    // No changes are confirmed yet, but we can set the status code to 204 for now
+    let responseCode = 204;
+
+    const existingSong = unorganizedAlbum.Tracks.find(
+        track => track.Name.toLowerCase() === title.toLowerCase()
+    );
+
+    if (!existingSong) {
+        // Add new song
+        const newSong = {
+            Name: title,
+            Length: length,
+        };
+        unorganizedAlbum.Tracks.push(newSong);
+        responseCode = 201;
+    } else {
+        // Update existing song’s length
+        existingSong.Length = length;
+    }
+
+    // Respond to client
+    if (responseCode === 201) {
+        return respondJSON(request, response, 201, {
+            message: 'Song added successfully.',
+            song: { title, length },
+        });
+    }
+
+    return respondJSON(request, response, 204, {});
+
+};
+
+const addRating = (request, response) => {
+    const { title, rating } = request.body;
+
+    // Validate inputs
+    if (!title || !rating) {
+        return respondJSON(request, response, 400, {
+            message: 'Both title and rating are required.',
+            id: 'MissingFields',
+        });
+    }
+    
+    // No changes are confirmed yet, but we can set the status code to 204 for now
+    let foundSong = null;
+    
+    for (const album of lowRoarData) {
+        const song = album.Tracks.find(
+            track => track.Name.toLowerCase() === title.toLowerCase()
+        );
+        if (song) {
+            foundSong = song;
+            break;
+        }
+    }
+
+    // If the song wasn’t found in any album
+    if (!foundSong) {
+        return respondJSON(request, response, 404, {
+            message: `Song "${title}" not found in any album.`,
+            id: 'SongNotFound',
+        });
+    }
+
+    // Update or add the rating
+    foundSong.Rating = rating;
+    console.log(lowRoarData)
+
+
+    return respondJSON(request, response, 200, {
+        message: `Rating for "${foundSong.Name}" updated successfully.`,
+        album: foundAlbum.Name,
+        song: {
+            title: foundSong.Name,
+            rating: foundSong.Rating,
+        },
+    });
+};
+
 
 
 
@@ -198,4 +313,6 @@ module.exports = {
     albumSearch,
     songSearch,
     lyricalSearch,
+    addSong,
+    addRating,
 };

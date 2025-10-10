@@ -3,7 +3,6 @@
 <head>
     <title>Low Roar</title>
     <link rel="stylesheet" type="text/css" href="/style.css">
-  
     <script>
         const handleResponse = async (response, parseResponse, sectionID) => {
             // Each div has it's own sectionID. We take it in so that we can make sure
@@ -35,82 +34,15 @@
                 let obj = await response.json();
 
                 if (sectionID === 'get-albums' && response.status === 200){
-                    content.innerHTML += `<h3>Low Roar Collection</h3>`;
-                    // For each individual album, this is how we will organize 'em.
-                    obj.forEach(album => {
-                        content.innerHTML += `
-                        <div class="album">
-                            <img src="${album.CoverImage}" alt="The album cover for Low Roar's ${album.AlbumTitle}" width="100"><br>
-                            <h4>${album.AlbumTitle} (${album.Released})</h4>
-                            <span><b>Label: </b>${album.Label}</span
-                            <span>Length: </b>${album.Length}</span>
-                            <div class="newlines"> ${album.Description}</div><br>
-                            <a href="${album.YoutubeURL}" target="_blank">YouTube</a> |
-                            <a href="${album.SpotifyURL}" target="_blank">Spotify</a> |
-                            <a href="${album.AppleURL}" target="_blank">Apple</a> |
-                            <a href="${album.WikiURL}" target="_blank">Wikipedia</a>
-                            <hr>
-                        </div>
-                        `;
-                    });
+                    albumHTML(content, obj);
                 } else if (sectionID === 'get-songs' && response.status === 200)  {
-                    content.innerHTML += `<h3>Low Roar Songs</h3>`;
-                    obj.forEach(song => {
-                        content.innerHTML += `
-                        <div class="song">
-                            <img src="${song.CoverImage}" alt="${song.SongName}'s album's cover image." width="100"><br>
-                            <h2>${song.SongName}</h2>
-                            <b>Length: </b>${song.Length}<br>
-                            <b>Lyrics</b><br><div class="newlines">${song.Lyrics}</div>
-                            <hr>
-                        </div>
-                        `;
-                    });
+                    songHTML(content, obj);
                 } else if (sectionID === 'search-for-album' && response.status === 200) {
-                    content.innerHTML += `<h3>Low Roar Album Search</h3>`;
-                    obj.forEach(album => {
-                        content.innerHTML += `
-                        <div class="album">
-                            <img src="${album.CoverImage}" alt="The album cover for Low Roar's ${album.AlbumTitle}" width="100"><br>
-                            <h4>${album.AlbumTitle} (${album.Released})</h4>
-                            <b>Label: </b>${album.Label}<br>
-                            <b>Length: </b>${album.Length}<br>
-                            <div class="newlines"> ${album.Description}</div><br>
-                            <a href="${album.YoutubeURL}" target="_blank">YouTube</a> |
-                            <a href="${album.SpotifyURL}" target="_blank">Spotify</a> |
-                            <a href="${album.AppleURL}" target="_blank">Apple</a> |
-                            <a href="${album.WikiURL}" target="_blank">Wikipedia</a>
-                            <hr>
-                        </div>
-                        `;
-                    });
+                    albumHTML(content, obj);
                 } else if (sectionID === 'search-for-song' && response.status === 200) {
-                    content.innerHTML += `<h3>Low Roar Song Search</h3>`;
-                    obj.forEach(song => {
-                        content.innerHTML += `
-                        <div class="song">
-                            <img src="${song.CoverImage}" alt="${song.SongName}'s album's cover image." width="100"><br>
-                            <h2>${song.SongName}</h2>
-                            <b>Length: </b>${song.Length}<br>
-                            <b>Lyrics</b><br><div class="newlines">${song.Lyrics}</div>
-                            <hr>
-                        </div>
-                        `;
-                    });
+                    songHTML(content, obj);
                 }else if (sectionID === 'get-by-lyrics' && response.status === 200) {
-                    console.log("lyrical search");
-                    content.innerHTML += `<h3>Lyrical Search Results</h3>`;
-                    obj.forEach(song => {
-                        content.innerHTML += `
-                        <div class="lyrics">
-                            <img src="${song.CoverImage}" alt="${song.SongName}'s album's cover image." width="100"><br>
-                            <h2>${song.SongName}</h2>
-                            <b>Length: </b>${song.Length}<br>
-                            <b>Lyrics</b><br><div class="newlines">${song.Lyrics}</div>
-                            <hr>
-                        </div>
-                        `;
-                    });
+                    songHTML(content, obj);
                 }
                 console.log(obj.message);
                 if (obj.message) {
@@ -118,6 +50,45 @@
                 }
             }
         };
+
+        const albumHTML = (content, obj) => {
+            content.innerHTML += `<h3>Low Roar Album Search</h3>`;
+            obj.forEach(album => {
+                content.innerHTML += `
+                <div class="album">
+                    <img src="${album.CoverImage}" alt="The album cover for Low Roar's ${album.AlbumTitle}" width="100"><br>
+                    <h4>${album.AlbumTitle} (${album.Released})</h4>
+                    <b>Label: </b>${album.Label}<br>
+                    <b>Length: </b>${album.Length}<br>
+                    <div class="newlines"> ${album.Description}</div><br>
+                    <a href="${album.YoutubeURL}" target="_blank">YouTube</a> |
+                    <a href="${album.SpotifyURL}" target="_blank">Spotify</a> |
+                    <a href="${album.AppleURL}" target="_blank">Apple</a> |
+                    <a href="${album.WikiURL}" target="_blank">Wikipedia</a>
+                    <hr>
+                </div>
+                `;
+            });
+        };
+
+        const songHTML = (content, obj) => {
+            content.innerHTML += `<h3>Low Roar Songs</h3>`;
+            obj.forEach(song => {
+                content.innerHTML += `
+                <div class="song">
+                    <img src="${song.CoverImage}" alt="${song.SongName}'s album's cover image." width="100"><br>
+                    <h2>${song.SongName}</h2>`;
+                    if (song.Rating) { content.innerHTML += `<b>Rating: </b>${song.Rating}`};
+                    content.innerHTML +=` 
+                    <b>Length: </b>${song.Length}<br>
+                    <b>Lyrics</b><br><div class="newlines">${song.Lyrics}</div>
+                    <hr>
+                </div>
+                `;
+            });
+        };
+
+
 
         const requestUpdate = async (userForm, sectionID) => {
             let url = userForm.getAttribute('action');
@@ -139,17 +110,19 @@
             const method = nameForm.getAttribute('method');
             
             let titleField;
-            let authorField;
-            let ratingField;
+            let lengthField;
+            let rateTitleField;
+            let rateField;
+            let formData;
             if (nameForm === addYourOwnSongForm) {
-                titleField = nameForm.querySelector("#titleField");
-                authorField = nameForm.querySelector("#authorField");
-            } else if (nameForm === addRatingForm) {
-                titleField = nameForm.querySelector("#titleField");
-                ratingField = nameForm.querySelector("#ratingField");
+                titleField = nameForm.querySelector("#yourTitleField");
+                lengthField = nameForm.querySelector("#yourLengthField");
+                formData = `title=${titleField.value}&length=${lengthField.value}`;
+            } else if (nameForm === rateSongForm) {
+                rateTitleField = nameForm.querySelector("#rateTitleField");
+                rateField = nameForm.querySelector("#rateField");
+                formData = `title=${rateTitleField.value}&rating=${rateField.value}`;
             }
-            // this isn't modular, so i will change this in the future. rn rating should be broken
-            const formData = `title=${titleField.value}&author=${authorField.value}`;
 
             const response = await fetch(url, {
                 method: method,
@@ -171,7 +144,7 @@
             const lyricalSearchForm = document.querySelector('#lyricalSearchForm');
 
             const addYourOwnSongForm = document.querySelector('#addYourOwnSongForm');
-            const addRatingForm = document.querySelector('#rateSongForm');
+            const rateSongForm = document.querySelector('#rateSongForm');
 
         
             const getAlbums = (e) => {
@@ -220,7 +193,7 @@
             lyricalSearchForm.addEventListener('submit', lyricalSearch);
             // post forms
             addYourOwnSongForm.addEventListener('submit', addSong);
-            addRatingForm.addEventListener('submit', addRating);
+            rateSongForm.addEventListener('submit', addRating);
         };
 
         window.onload = init;
@@ -321,8 +294,8 @@
         <form id="addYourOwnSongForm" action="/addSong" method="post">
             <label for="title">Title: </label>
             <input id="yourTitleField" type="text" name="title"/>
-            <label for="author">Author: </label>
-            <input id="yourAuthorField" type="text" name="author"/>
+            <label for="length">Length: </label>
+            <input id="yourLengthField" type="text" name="length"/>
             <input type="submit" value="Add Song" />
         </form>
         <div class="content-block">
@@ -337,7 +310,7 @@
             <label for="title">Title: </label>
             <input id="rateTitleField" type="text" name="title"/>
             <label for="rating">Rating: </label>
-            <input id="ratingField" type="number" name="rating" min="1" max="5" step="1"/>
+            <input id="rateField" type="number" name="rating" min="1" max="5" step="1"/>
             <input type="submit" value="Submit Rating" />
         </form>
         <div class="content-block">
