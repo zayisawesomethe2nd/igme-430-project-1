@@ -1,7 +1,6 @@
 const fs = require('fs');
 
-// Using let since the data will be modified.
-let lowRoarData = JSON.parse(fs.readFileSync('dataset/low-roar.json', 'utf8'));
+const lowRoarData = JSON.parse(fs.readFileSync('dataset/low-roar.json', 'utf8'));
 
 // Takes request, response, status code, and object to send 
 // returns with a JSON object. 
@@ -24,7 +23,8 @@ const respondJSON = (request, response, status, object) => {
 // Gets all album data.
 const getAlbums = (request, response) => {
     const albums = [];
-
+    
+    // Goes through the dataset to grab all album objects with all of their associated data
     for (const album of lowRoarData) {
         albums.push({
         ID: album.ID,
@@ -48,6 +48,8 @@ const getAlbums = (request, response) => {
 const getSongs = (request, response) => {
   const songs = [];
 
+  // First, enter an album, and then get the tracks from that album. This is a nested for loop
+  // to get all tracks from all albums. Also gets the cover image from the associated track album.
   for (const album of lowRoarData) {
     for (const track of album.Tracks) {
         const trackData = {
@@ -70,6 +72,8 @@ const getSongs = (request, response) => {
   return respondJSON(request, response, 200, songs);
 }
 
+// Uses title and year inputs from the user to search for the appropriate album. Neither is necessary
+// for a search to go through.
 const albumSearch = (request, response) => {
     const { title, year } = request.query;
     if (!title && !year) {
@@ -83,24 +87,23 @@ const albumSearch = (request, response) => {
     const yearSearchTerm = year.trim();
 
     for (const album of lowRoarData) {
-        let matchesTitle;
+        let matchesTitle; // both are booleans for checking if our title is found
         let matchesYear;
 
         // Check title
         if (titleSearchTerm) {
             matchesTitle = album.AlbumTitle.toLowerCase().includes(titleSearchTerm);
         } else {
-            matchesTitle = true; // no title given → ignore title filter
+            matchesTitle = true;  // If not given, ignore this basically
         }
 
-        // Check year
+        // Check year -> will be changed later 
         if (yearSearchTerm) {
             matchesYear = album.Released.toString().includes(yearSearchTerm);
         } else {
-            matchesYear = true; // no year given → ignore year filter
+            matchesYear = true;
         }
 
-        // If both filters pass, add album to results
         if (matchesTitle && matchesYear) {
             results.push({
                 ID: album.ID,
@@ -121,6 +124,7 @@ const albumSearch = (request, response) => {
     return respondJSON(request, response, 200, results);
 };
 
+// Uses a song title and album year to find an appropriate song. 
 const songSearch = (request, response) => {
     const { title, year } = request.query;
     if (!title && !year) {
@@ -135,11 +139,10 @@ const songSearch = (request, response) => {
     const yearSearchTerm = year ? year.trim() : null;
 
     for (const album of lowRoarData) {
-        // Year filter (convert album.Released to string)
         if (yearSearchTerm && !album.Released.toString().includes(yearSearchTerm)) continue;
 
         for (const track of album.Tracks) {
-            if (!track.Name) continue; // skip empty tracks
+            if (!track.Name) continue; 
             if (titleSearchTerm && !track.Name.toLowerCase().includes(titleSearchTerm)) continue;
 
             const trackData = {
@@ -230,11 +233,9 @@ const addSong = (request, response) => {
         unorganizedAlbum.Tracks.push(newSong);
         responseCode = 201;
     } else {
-        // Update existing song’s length
         existingSong.Length = length;
     }
 
-    // Respond to client
     if (responseCode === 201) {
         return respondJSON(request, response, 201, {
             message: 'Song added successfully.',
@@ -246,10 +247,10 @@ const addSong = (request, response) => {
 
 };
 
+// Adds rating data to an track object.
 const addRating = (request, response) => {
     const { title, rating } = request.body;
 
-    // Validate inputs
     if (!title || !rating) {
         return respondJSON(request, response, 400, {
             message: 'Both title and rating are required.',
@@ -296,7 +297,7 @@ const addRating = (request, response) => {
 
 
 
-
+// For when a link does not exist.
 const notFound = (request, response) => {
     const responseJSON = {
         message: 'The page you are looking for was not found.',
@@ -308,11 +309,11 @@ const notFound = (request, response) => {
 
 module.exports = {
     getAlbums,
-    notFound,
     getSongs,
     albumSearch,
     songSearch,
     lyricalSearch,
     addSong,
     addRating,
+    notFound,
 };

@@ -13,4 +13,6 @@ const getImage = (request, response, status) => {
   response.end();
 };
 
-module.exports.getImage = getImage;
+module.exports = {
+    getImage,
+};
