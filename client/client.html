@@ -1,160 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Our simple HTTP server</title>
+    <title>Low Roar</title>
     <link rel="stylesheet" type="text/css" href="/style.css">
   
     <script>
         const handleResponse = async (response, parseResponse, sectionID) => {
-        // Each div has it's own sectionID. We take it in so that we can make sure
-        // whatever data we have goes to the right place.
-        const content = document.querySelector(`#${sectionID}`);
+            // Each div has it's own sectionID. We take it in so that we can make sure
+            // whatever data we have goes to the right place.
+            const content = document.querySelector(`#${sectionID}`);
 
-        switch(response.status) {
-            case 200: 
-            content.innerHTML = `<b>Success</b>`;
-            break;
-            case 201:
-            content.innerHTML = `<b>Created</b>`;
-            break;
-            case 204:
-            content.innerHTML = `<b>Updated (No Content)</b>`;
-            break;
-            case 400: 
-            content.innerHTML = `<b>Bad Request</b>`;
-            break;
-            case 404:
-            content.innerHTML = `<b>Not Found</b>`;
-            break;
-            default: 
-            content.innerHTML = `Error code not implemented by client.`;
-            break;
-        }
-        console.log("parse: " + parseResponse)
-        if (parseResponse) {
-            let obj = await response.json();
+            switch(response.status) {
+                case 200: 
+                content.innerHTML = `<b>Success</b>`;
+                break;
+                case 201:
+                content.innerHTML = `<b>Created</b>`;
+                break;
+                case 204:
+                content.innerHTML = `<b>Updated (No Content)</b>`;
+                break;
+                case 400: 
+                content.innerHTML = `<b>Bad Request</b>`;
+                break;
+                case 404:
+                content.innerHTML = `<b>Not Found</b>`;
+                break;
+                default: 
+                content.innerHTML = `Error code not implemented by client.`;
+                break;
+            }
+            console.log("parse: " + parseResponse)
+            if (parseResponse) {
+                let obj = await response.json();
 
-            if (response.status === 200){
-            let jsonString = JSON.stringify(obj);
-            content.innerHTML += `<p>${jsonString}</p>`;
+                if (sectionID === 'get-albums' && response.status === 200){
+                    content.innerHTML += `<h3>Low Roar Collection</h3>`;
+                    // For each individual album, this is how we will organize 'em.
+                    obj.forEach(album => {
+                        content.innerHTML += `
+                        <div class="album">
+                            <img src="${album.CoverImage}" alt="The album cover for Low Roar's ${album.AlbumTitle}" width="100"><br>
+                            <h4>${album.AlbumTitle} (${album.Released})</h4>
+                            <span><b>Label: </b>${album.Label}</span
+                            <span>Length: </b>${album.Length}</span>
+                            <div class="newlines"> ${album.Description}</div><br>
+                            <a href="${album.YoutubeURL}" target="_blank">YouTube</a> |
+                            <a href="${album.SpotifyURL}" target="_blank">Spotify</a> |
+                            <a href="${album.AppleURL}" target="_blank">Apple</a> |
+                            <a href="${album.WikiURL}" target="_blank">Wikipedia</a>
+                            <hr>
+                        </div>
+                        `;
+                    });
+                } else if (sectionID === 'get-songs' && response.status === 200)  {
+                    content.innerHTML += `<h3>Low Roar Songs</h3>`;
+                    obj.forEach(song => {
+                        content.innerHTML += `
+                        <div class="song">
+                            <img src="${song.CoverImage}" alt="${song.SongName}'s album's cover image." width="100"><br>
+                            <h2>${song.SongName}</h2>
+                            <b>Length: </b>${song.Length}<br>
+                            <b>Lyrics</b><br><div class="newlines">${song.Lyrics}</div>
+                            <hr>
+                        </div>
+                        `;
+                    });
+                } else if (sectionID === 'search-for-album' && response.status === 200) {
+                    content.innerHTML += `<h3>Low Roar Album Search</h3>`;
+                    obj.forEach(album => {
+                        content.innerHTML += `
+                        <div class="album">
+                            <img src="${album.CoverImage}" alt="The album cover for Low Roar's ${album.AlbumTitle}" width="100"><br>
+                            <h4>${album.AlbumTitle} (${album.Released})</h4>
+                            <b>Label: </b>${album.Label}<br>
+                            <b>Length: </b>${album.Length}<br>
+                            <div class="newlines"> ${album.Description}</div><br>
+                            <a href="${album.YoutubeURL}" target="_blank">YouTube</a> |
+                            <a href="${album.SpotifyURL}" target="_blank">Spotify</a> |
+                            <a href="${album.AppleURL}" target="_blank">Apple</a> |
+                            <a href="${album.WikiURL}" target="_blank">Wikipedia</a>
+                            <hr>
+                        </div>
+                        `;
+                    });
+                } else if (sectionID === 'search-for-song' && response.status === 200) {
+                    content.innerHTML += `<h3>Low Roar Song Search</h3>`;
+                    obj.forEach(song => {
+                        content.innerHTML += `
+                        <div class="song">
+                            <img src="${song.CoverImage}" alt="${song.SongName}'s album's cover image." width="100"><br>
+                            <h2>${song.SongName}</h2>
+                            <b>Length: </b>${song.Length}<br>
+                            <b>Lyrics</b><br><div class="newlines">${song.Lyrics}</div>
+                            <hr>
+                        </div>
+                        `;
+                    });
+                }else if (sectionID === 'get-by-lyrics' && response.status === 200) {
+                    console.log("lyrical search");
+                    content.innerHTML += `<h3>Lyrical Search Results</h3>`;
+                    obj.forEach(song => {
+                        content.innerHTML += `
+                        <div class="lyrics">
+                            <img src="${song.CoverImage}" alt="${song.SongName}'s album's cover image." width="100"><br>
+                            <h2>${song.SongName}</h2>
+                            <b>Length: </b>${song.Length}<br>
+                            <b>Lyrics</b><br><div class="newlines">${song.Lyrics}</div>
+                            <hr>
+                        </div>
+                        `;
+                    });
+                }
+                console.log(obj.message);
+                if (obj.message) {
+                    content.innerHTML += `<p>Message: ${obj.message}</p>`;
+                }
             }
-            console.log(obj.message);
-            if (obj.message) {
-            content.innerHTML += `<p>Message: ${obj.message}</p>`;
-            }
-        }
         };
 
-    const requestUpdate = async (userForm, sectionID) => {
-      const url = userForm.getAttribute('action');
-      const method = userForm.querySelector('#methodSelect').value;
-      
-      let response = await fetch(url, {
-        method,
-        headers: {
-            'Accept': 'application/json'
-        },
-      });
+        const requestUpdate = async (userForm, sectionID) => {
+            let url = userForm.getAttribute('action');
+            const method = userForm.querySelector('#methodSelect').value;
+            const params = new URLSearchParams(new FormData(userForm)).toString();
+            url += `?${params}`;
+            let response = await fetch(url, {
+                method,
+                headers: {
+                    'Accept': 'application/json'
+                },
+            });
 
-      handleResponse(response, method === 'get', sectionID);
-    };
+            handleResponse(response, method === 'get', sectionID);
+        };
 
-    const sendPost = async (nameForm, sectionID) => {
-        const url = nameForm.getAttribute('action');
-        const method = nameForm.getAttribute('method');
+        const sendPost = async (nameForm, sectionID) => {
+            const url = nameForm.getAttribute('action');
+            const method = nameForm.getAttribute('method');
+            
+            let titleField;
+            let authorField;
+            let ratingField;
+            if (nameForm === addYourOwnSongForm) {
+                titleField = nameForm.querySelector("#titleField");
+                authorField = nameForm.querySelector("#authorField");
+            } else if (nameForm === addRatingForm) {
+                titleField = nameForm.querySelector("#titleField");
+                ratingField = nameForm.querySelector("#ratingField");
+            }
+            // this isn't modular, so i will change this in the future. rn rating should be broken
+            const formData = `title=${titleField.value}&author=${authorField.value}`;
+
+            const response = await fetch(url, {
+                method: method,
+                headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept': 'application/json',
+                },
+                body: formData,
+            });
+
+            handleResponse(response, true, sectionID);
+        };
+
+        const init = () => {
+            const albumsForm = document.querySelector('#albumsForm');
+            const songsForm = document.querySelector('#songsForm');
+            const albumSearchForm = document.querySelector('#albumSearchForm');
+            const songSearchForm = document.querySelector('#songSearchForm');
+            const lyricalSearchForm = document.querySelector('#lyricalSearchForm');
+
+            const addYourOwnSongForm = document.querySelector('#addYourOwnSongForm');
+            const addRatingForm = document.querySelector('#rateSongForm');
+
         
-        let titleField;
-        let ageField;
-        let ratingField;
-        if (nameForm === addYourOwnSongForm) {
-            titleField = nameForm.querySelector("#titleField");
-            authorField = nameForm.querySelector("#authorField");
-        } else if (nameForm === addRatingForm) {
-            titleField = nameForm.querySelector("#titleField");
-            ratingField = nameForm.querySelector("#ratingField");
-        }
-        // this isn't modular, so i will change this in the future. rn rating should be broken
-        const formData = `title=${titleField.value}&author=${authorField.value}`;
+            const getAlbums = (e) => {
+                e.preventDefault();
+                console.log(e.target);
+                requestUpdate(albumsForm, 'get-albums');
+                return false;
+            }
+            const getSongs = (e) => {
+                e.preventDefault();
+                requestUpdate(songsForm, 'get-songs');
+                return false;
+            }
+            const albumSearch = (e) => {
+                e.preventDefault();
+                requestUpdate(albumSearchForm, 'search-for-album');
+                return false;
+            }
+            const songSearch = (e) => {
+                e.preventDefault();
+                requestUpdate(songSearchForm, 'search-for-song');
+                return false;
+            }
+            const lyricalSearch = (e) => {
+                e.preventDefault();
+                requestUpdate(lyricalSearchForm, 'get-by-lyrics');
+                return false;
+            }
 
-        const response = await fetch(url, {
-            method: method,
-            headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Accept': 'application/json',
-            },
-            body: formData,
-        });
+            const addSong = (e) => {
+                e.preventDefault();
+                sendPost(addYourOwnSongForm, 'post-song');
+                return false;
+            }
+            const addRating = (e) => {
+                e.preventDefault();
+                sendPost(rateSongForm, 'post-rating');
+                return false;
+            }
+        
+            // get forms
+            albumsForm.addEventListener('submit', getAlbums);
+            songsForm.addEventListener('submit', getSongs);
+            albumSearchForm.addEventListener('submit', albumSearch);
+            songSearchForm.addEventListener('submit', songSearch);
+            lyricalSearchForm.addEventListener('submit', lyricalSearch);
+            // post forms
+            addYourOwnSongForm.addEventListener('submit', addSong);
+            addRatingForm.addEventListener('submit', addRating);
+        };
 
-        handleResponse(response, true, sectionID);
-    };
-
-    const init = () => {
-        const albumsForm = document.querySelector('#albumsForm');
-        const songsForm = document.querySelector('#songsForm');
-        const albumTitleForm = document.querySelector('#albumTitleForm');
-        const songTitleForm = document.querySelector('#songTitleForm');
-        const lyricalSearchForm = document.querySelector('#lyricalSearchForm');
-
-        const addYourOwnSongForm = document.querySelector('#addYourOwnSongForm');
-        const addRatingForm = document.querySelector('#rateSongForm');
-
-      
-        const getAlbums = (e) => {
-            e.preventDefault();
-            console.log(e.target);
-            requestUpdate(albumsForm, 'get-albums');
-            return false;
-        }
-        const getSongs = (e) => {
-            e.preventDefault();
-            requestUpdate(songsForm, 'get-songs');
-            return false;
-        }
-        const albumTitleSearch = (e) => {
-            e.preventDefault();
-            requestUpdate(albumTitleForm, 'get-album-title');
-            return false;
-        }
-        const songTitleSearch = (e) => {
-            e.preventDefault();
-            requestUpdate(songTitleForm, 'get-song-title');
-            return false;
-        }
-        const lyricalSearch = (e) => {
-            e.preventDefault();
-            requestUpdate(lyricalSearchForm, 'get-by-lyrics');
-            return false;
-        }
-
-        const addSong = (e) => {
-            e.preventDefault();
-            sendPost(addYourOwnSongForm, 'post-song');
-            return false;
-        }
-        const addRating = (e) => {
-            e.preventDefault();
-            sendPost(rateSongForm, 'post-rating');
-            return false;
-        }
-      
-        // get forms
-        albumsForm.addEventListener('submit', getAlbums);
-        songsForm.addEventListener('submit', getSongs);
-        albumTitleForm.addEventListener('submit', albumTitleSearch);
-        songTitleForm.addEventListener('submit', songTitleSearch);
-        lyricalSearchForm.addEventListener('submit', lyricalSearch);
-        // post forms
-        addYourOwnSongForm.addEventListener('submit', addSong);
-        addRatingForm.addEventListener('submit', addRating);
-    };
-
-    window.onload = init;
+        window.onload = init;
     </script>
 
 </head>
 
 <body>
-    <h2>Low Roar</h2>
+    <h2 class="websiteTitle">Low Roar</h2>
     <div class="apiAccess">
         <!-- In here, we will simply return all albums..-->
         <h2>All Albums</h2>
@@ -186,13 +261,13 @@
         </div>
     </div>
     <div class="apiAccess">
-        <!-- In here, we will search for Low Roar Albums by title and/or by year. -->
-        <h2>Album Title Search</h3>
-        <form id="albumTitleForm" action="/getAlbumTitles" method="get">
+        <!-- In here, we will return a Low Roar Album by title and/or by year. -->
+        <h2>Album Search</h3>
+        <form id="albumSearchForm" action="/albumSearch" method="get">
             <label for="title">Title: </label>
-            <input id="titleField" type="text" name="title"/>
+            <input id="albumTitleField" type="text" name="title"/>
             <label for="year">Year: </label>
-            <input id="yearField" type="text" name="year"/>
+            <input id="albumYearField" type="text" name="year"/>
             <select id="methodSelect">
                 <option value="get">GET</option>
                 <option value="head">HEAD</option>
@@ -200,18 +275,18 @@
             <input type="submit" value="Search" />
         </form>
         <div class="content-block">
-            <section id="get-album-title">
+            <section id="search-for-album">
             </section>
         </div>
     </div>
     <div class="apiAccess">
         <!-- In here, we will search for Low Roar Albums by title and/or by year. -->
-        <h2>Song Title Search</h3>
-        <form id="songTitleForm" action="/getSongTitles" method="get">
+        <h2>Song Search</h3>
+        <form id="songSearchForm" action="/songSearch" method="get">
             <label for="title">Title: </label>
-            <input id="titleField" type="text" name="title"/>
+            <input id="songTitleField" type="text" name="title"/>
             <label for="year">Year: </label>
-            <input id="yearField" type="text" name="year"/>
+            <input id="songYearField" type="text" name="year"/>
             <select id="methodSelect">
                 <option value="get">GET</option>
                 <option value="head">HEAD</option>
@@ -219,7 +294,7 @@
             <input type="submit" value="Search" />
         </form>
         <div class="content-block">
-            <section id="get-song-title">
+            <section id="search-for-song">
             </section>
         </div>
     </div>
@@ -245,9 +320,9 @@
         <h2>Add Your Own Song</h2>
         <form id="addYourOwnSongForm" action="/addSong" method="post">
             <label for="title">Title: </label>
-            <input id="titleField" type="text" name="title"/>
+            <input id="yourTitleField" type="text" name="title"/>
             <label for="author">Author: </label>
-            <input id="authorField" type="text" name="author"/>
+            <input id="yourAuthorField" type="text" name="author"/>
             <input type="submit" value="Add Song" />
         </form>
         <div class="content-block">
@@ -260,7 +335,7 @@
         <h2>Rate Song</h2>
         <form id="rateSongForm" action="/rateSong" method="post">
             <label for="title">Title: </label>
-            <input id="titleField" type="text" name="title"/>
+            <input id="rateTitleField" type="text" name="title"/>
             <label for="rating">Rating: </label>
             <input id="ratingField" type="number" name="rating" min="1" max="5" step="1"/>
             <input type="submit" value="Submit Rating" />

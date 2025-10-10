@@ -40,6 +40,14 @@ const handleGet = (request, response, parsedUrl) => {
         htmlHandler.getCSS(request, response);
     } else if (parsedUrl.pathname === '/getAlbums') {
         jsonHandler.getAlbums(request, response);
+    } else if (parsedUrl.pathname ==='/getSongs') {
+        jsonHandler.getSongs(request, response);
+    } else if (parsedUrl.pathname === '/albumSearch') {
+        jsonHandler.albumSearch(request, response);
+    } else if (parsedUrl.pathname === '/songSearch') {
+        jsonHandler.songSearch(request, response);
+    } else if (parsedUrl.pathname === '/getSongFromLyrics') {
+        jsonHandler.lyricalSearch(request, response);
     } else if (parsedUrl.pathname === '/notReal') {
         jsonHandler.notFound(request, response);
     } else {
@@ -50,6 +58,9 @@ const handleGet = (request, response, parsedUrl) => {
 const onRequest = (request, response) => {
     const protocol = request.connection.encrypted ? 'https' : 'http';
     const parsedUrl = new URL(request.url, `${protocol}://${request.headers.host}`);
+
+    // Query taken from parsed URL, used for searches
+    request.query = Object.fromEntries(parsedUrl.searchParams);
 
 
     if (request.method === 'POST') {

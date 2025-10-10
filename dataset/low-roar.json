@@ -2,11 +2,11 @@
     {
       "ID": 1, 
       "AlbumTitle": "Low Roar",
-      "CoverImage": "../client/images/low-roar.jpeg",
+      "CoverImage": "../client/images/low-roar.png",
       "Released": 2011,
       "Length": "53:37",
       "Label": "Tonequake Records",
-      "Description": "Low Roar is the debut album by the American-Icelandic musical project Low Roar, released on November 1, 2011, through Tonequake Records.[2] \"Help Me,\" the album's eighth track, was featured in the animated documentary film Flee. The song \"Patience\", along with many other songs from this album, was featured in the videogame Death Stranding.",
+      "Description": "Low Roar is the debut album by the American-Icelandic musical project Low Roar, released on November 1, 2011, through Tonequake Records. \"Help Me,\" the album's eighth track, was featured in the animated documentary film Flee. The song \"Patience\", along with many other songs from this album, was featured in the videogame Death Stranding.",
       "YoutubeURL": "https://www.youtube.com/watch?v=3zJsumSoMMY&list=OLAK5uy_nxRQwOGYakDEWyzIbhwOMRgfgYyCskQ_M",
       "SpotifyURL": "https://open.spotify.com/album/3lETJkavciTauiSyOV1gZC",
       "AppleURL": "https://music.apple.com/us/album/low-roar/905267810",
@@ -82,7 +82,7 @@
     {
       "ID": 2, 
       "AlbumTitle": "0",
-      "CoverImage": "../client/images/0.jpg",
+      "CoverImage": "../client/images/0.png",
       "Released": 2014,
       "Length": "68:14",
       "Label": "Tonequake Records",
