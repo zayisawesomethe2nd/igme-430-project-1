@@ -176,7 +176,7 @@
         "Lyrics": "Weight\r\nHeavy bones\r\nBloody eyes\r\nSweaty clothes\r\n\nNew routine\r\nThat I've learned\r\nTo understand and know\r\n\nPlay my tricks\r\nFragile mind\r\nRest your head\r\nOn me\r\n\nShut my eyes\r\nI'm not here\r\nThere must be some mistake\r\n\nDon't be so serious\r\nDon't be so serious\r\nDon't be so serious\r\nDon't be so serious\r\n\nWatch your words\r\nTurn to dust\r\nAs we forget\r\nAs we move on\r\n\nStill I refuse\r\nTo let you slip away\r\n\nDon't be so serious\r\nDon't be so serious\r\nDon't be so serious\r\nDon't be so serious\r\nDon't be so serious\r\nDon't be so serious\r\nDon't be so serious\r\nDon't be so serious\r\n\nAgnes\r\nAgnes\r\nAgnes\r\nAgnes"
       },
       {
-        "Name": "Bones (feat. Jófríður Ákadóttir",
+        "Name": "Bones",
         "Length": "2:49",
         "Lyrics": "[Ryan Karazija:]\r\nFirst of March, it's clear to me\r\nIt's something that's uncomforting\r\nYour body has a way with me\r\nBut I'm exactly where I wanna be\r\nBut I'm a long way from home\r\n\n[Jófríõur Ákadóttir:]\r\nI know your voice, I know your face\r\nThis is something I cannot replace\r\nGive me hope and give me doubt\r\nWell I loved you then but I don't love you now\r\nI'm a long way from home\r\n\n[Ryan & Jófríõur:]\r\n'Cause we're a long way from home\r\n\n[Ryan & Jófríõur:]\r\nNo listen now, don't walk away\r\nI've got nothing more to say\r\nCan you see it in my dying face\r\nYou're acting like I care\r\nNow is there anything that I can do\r\nIf there was would we be singing\r\n'Cause, you're a part of me and I'm a part of you\r\n'Cause, you're a part of me and I'm a part of you\r\n'Cause, you're a part of me and I'm a part of you\r\n'Cause, you're a part of me and I'm a part of you"
       },
@@ -216,7 +216,7 @@
         "Lyrics": "[Instrumental]"
       },
       {
-        "Name": "Poznań",
+        "Name": "Poznan",
         "Length": "2:03",
         "Lyrics": "And if we ever break these walls down\r\nIt's easier said than done\r\nWould I be crazy enough to follow?\r\nOr let the regret eat me up\r\n\n'Cause I know my way out\r\nI run, I run\r\nWell, there is no way out\r\nI'm stuck, I'm fucked\r\nIn a cage, on a hill, that's where I'll rot"
       },
@@ -233,6 +233,72 @@
       {
         "Name": "",
         "Length": "",
+        "Lyrics": ""
+      }
+    ]
+  },
+  {
+    "ID": 4,
+    "AlbumTitle": "ross.",
+    "AlbumArtist": "Low Roar",
+    "CoverImage": "ross.png",
+    "Released": "2019",
+    "Length": "41:33",
+    "Label": "Paper Records",
+    "Description": "ross. is the fourth studio album by the musical project Low Roar, released on November 8, 2019, through Paper Records. The songs \"Slow Down\" and \"Darkest Hour\" were released as singles.",
+    "YoutubeURL": "https://www.youtube.com/watch?v=CVF8WAgo284&list=PLGV75LUGb3JWH8sS1A9xO45Xnfk_yZsai&index=1",
+    "SpotifyURL": "https://open.spotify.com/album/0lXfuLWOpIe6yM45chrvUJ",
+    "AppleURL": "https://music.apple.com/us/album/ross/1479902478",
+    "WikiURL": "https://en.wikipedia.org/wiki/Ross._(Low_Roar_album)",
+    "Tracks": [
+      {
+        "Name": "Darkest Hour",
+        "Length": "2:59",
+        "Lyrics": ""
+      },
+      {
+        "Name": "Slow Down",
+        "Length": "3:52",
+        "Lyrics": ""
+      },
+      {
+        "Name": "H.A.F.H",
+        "Length": "4:15",
+        "Lyrics": ""
+      },
+      {
+        "Name": "I'll Make You Feel",
+        "Length": "5:57",
+        "Lyrics": ""
+      },
+      {
+        "Name": "Not Around",
+        "Length": "5:15",
+        "Lyrics": ""
+      },
+      {
+        "Name": "222",
+        "Length": "3:50",
+        "Lyrics": ""
+      },
+      {
+        "Name": "Feel Like Dying",
+        "Length": "3:11",
+        "Lyrics": ""
+      },
+      {
+        "Name": "The Machine",
+        "Length": "5:37",
+        "Lyrics": ""
+      },
+      {
+        "Name": "Blue Eyes",
+        "Length": "2:02",
+        "Lyrics": ""
+      },
+      {
+        "Name": "Empty House",
+        "Length": "5:03",
         "Lyrics": ""
       }
     ]
