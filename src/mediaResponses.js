@@ -35,12 +35,8 @@ const getImage = (request, response, imageName) => {
 // https://nodejs.org/api/https.html#httpsgeturl-options-callback
 const getSongPreview = (response, songName, artistName) => {
   // need to build the url to get appropriate songs.
-  let searchURL;
-  if (songName === 'Low Roar') {
-    searchURL = `https://itunes.apple.com/search?term=${songName} ${artistName}&entity=song&limit=50`;
-  } else {
-    searchURL = `https://itunes.apple.com/search?term=${songName} ${artistName}&entity=song&limit=12`;
-  }
+  const searchURL = `https://itunes.apple.com/search?term=${songName} ${artistName}&entity=song&limit=50`;
+
 
   https.get(searchURL, (res) => {
     let data = '';

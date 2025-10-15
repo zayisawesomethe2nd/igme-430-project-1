@@ -104,6 +104,13 @@ body {
   color: rgb(36, 36, 36);
 }
 
+/* Album Card - Artist */
+.album h3 {
+  font-size: 0.9em;
+  margin: 0 0 4px 0;
+  color: #353535;
+}
+
 /* Ablum Card - Label and Length */
 .album-bottom {
   font-family: 'Noto Sans JP', sans-serif;
@@ -202,7 +209,7 @@ body {
   font-weight: bold;
 }
 
-/* Song Card - Arist */
+/* Song Card - Artist */
 
 .song-info h3 {
   font-size: 0.85em;
