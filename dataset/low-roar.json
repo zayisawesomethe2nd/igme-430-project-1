@@ -2,7 +2,8 @@
   {
     "ID": 1,
     "AlbumTitle": "Low Roar",
-    "CoverImage": "../client/images/low-roar.png",
+    "AlbumArtist": "Low Roar",
+    "CoverImage": "low-roar.png",
     "Released": 2011,
     "Length": "53:37",
     "Label": "Tonequake Records",
@@ -53,7 +54,7 @@
         "Lyrics": "We built a house\r\nOn sacred ground\r\nWhat happened out there\r\nNow happens in here\r\nCold sweats and couches\r\nThis was the worst of my fears\r\n\nHelp me out\r\nHelp me out\r\n\nBones made of glass\r\nI'm starving\r\nFor someone to fill\r\nMy blood, my skin\r\n\nHelp me out\r\nHelp me out\r\nHelp me out\r\nHelp me out\r\n\nWhat's left to talk about?\r\nWhat's left to talk about?"
       },
       {
-        "Name": "Roiling Over",
+        "Name": "Rolling Over",
         "Length": "5:07",
         "Lyrics": "I'm turning over inside my grave\r\nYou're waking up to face a brand new day\r\nThe thoughts I tried to sway would not behave\r\nI'm waiting for you to be late\r\nI wait, I wait\r\n\nI'm making up my mind to not decide\r\nYou're living up to your hollow disguise\r\nThe fateful forced its face upon the prize\r\nI'm making excuses for my\r\nReprise, reprise\r\n\nI'm helpless and hopeful to remain so\r\nYou're reckless and ready to have a go\r\nThe silence sent a scream into the cold\r\nI'm pessimistic even though\r\nI hope, I hope\r\n\nI'm turning over inside my grave\r\nI'm waiting for you to be late\r\nI wait, I wait"
       },
@@ -82,7 +83,8 @@
   {
     "ID": 2,
     "AlbumTitle": "0",
-    "CoverImage": "../client/images/0.png",
+    "AlbumArtist": "Low Roar",
+    "CoverImage": "0.png",
     "Released": 2014,
     "Length": "68:14",
     "Label": "Tonequake Records",
@@ -103,14 +105,14 @@
     "ID": 0,
     "AlbumTitle": "Unorganized",
     "CoverImage": "",
-    "Released": "",
-    "Length": "",
-    "Label": "",
+    "Released": "Unknown",
+    "Length": "0",
+    "Label": "Unknown",
     "Description": "A collection of unorganized songs.",
-    "YoutubeURL": "",
-    "SpotifyURL": "",
-    "AppleURL": "",
-    "WikiURL": "",
+    "YoutubeURL": "Unknown",
+    "SpotifyURL": "Unknown",
+    "AppleURL": "Unknown",
+    "WikiURL": "Unknown",
     "Tracks": [
     ]
   }

@@ -31,8 +31,10 @@ const parseBody = (request, response, handler) => {
 
 const handlePost = (request, response, parsedUrl) => {
     if (parsedUrl.pathname === '/addSong') {
+        console.log("Adding song...");
         parseBody(request, response, jsonHandler.addSong);
     } else if (parsedUrl.pathname === '/addRating') {
+        console.log("Adding rating...");
         parseBody(request, response, jsonHandler.addRating);
     }
 };
@@ -50,8 +52,13 @@ const handleGet = (request, response, parsedUrl) => {
         jsonHandler.songSearch(request, response);
     } else if (parsedUrl.pathname === '/getSongFromLyrics') {
         jsonHandler.lyricalSearch(request, response);
-    } else if (parsedUrl.pathname === '/notReal') {
-        jsonHandler.notFound(request, response);
+    } else if (parsedUrl.pathname === '/getImage') {
+        mediaHandler.getImage(request, response, parsedUrl.searchParams.get('image'));
+    } else if (parsedUrl.pathname === '/getSongPreview') {
+        // Grab the proper params from our URL to get the song preview.
+        const songName = parsedUrl.searchParams.get('song');
+        const artistName = parsedUrl.searchParams.get('artist');
+        mediaHandler.getSongPreview(response, songName, artistName);    
     } else {
         htmlHandler.getIndex(request, response);
     }

@@ -3,6 +3,12 @@
 <head>
     <title>Low Roar</title>
     <link rel="stylesheet" type="text/css" href="/style.css">
+    <!-- FONTS FONTS FONTS FONTS FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Pacifico&family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
+    <!-- END OF FONTS FONTS FONTS FONTS FONTS -->
+
     <script>
         const handleResponse = async (response, parseResponse, sectionID) => {
             // Each div has it's own sectionID. We take it in so that we can make sure
@@ -11,83 +17,230 @@
 
             switch(response.status) {
                 case 200: 
-                content.innerHTML = `<b>Success</b>`;
+                console.log("Success");
                 break;
                 case 201:
-                content.innerHTML = `<b>Created</b>`;
+                console.log("Created");
                 break;
                 case 204:
-                content.innerHTML = `<b>Updated (No Content)</b>`;
+                console.log("Updated (No Content)");
                 break;
                 case 400: 
-                content.innerHTML = `<b>Bad Request</b>`;
+                console.log("Bad Request");
                 break;
                 case 404:
-                content.innerHTML = `<b>Not Found</b>`;
+                console.log("Not Found");
                 break;
                 default: 
-                content.innerHTML = `Error code not implemented by client.`;
+                console.log("Error Code Not Implemented");
                 break;
             }
             console.log("parse: " + parseResponse)
             if (parseResponse) {
-                let obj = await response.json();
-
-                if (sectionID === 'get-albums' && response.status === 200){
-                    albumHTML(content, obj);
-                } else if (sectionID === 'get-songs' && response.status === 200)  {
-                    songHTML(content, obj);
-                } else if (sectionID === 'search-for-album' && response.status === 200) {
-                    albumHTML(content, obj);
-                } else if (sectionID === 'search-for-song' && response.status === 200) {
-                    songHTML(content, obj);
-                }else if (sectionID === 'get-by-lyrics' && response.status === 200) {
-                    songHTML(content, obj);
+                content.innerHTML = ``;
+                // Since a 204 causes issues when updating a song, we check the code first.
+                let obj = null;
+                if (response.status !== 204) {
+                    obj = await response.json();
+                
+                    if (sectionID === 'get-albums' && response.status === 200){
+                        albumHTML(content, obj);
+                    } else if (sectionID === 'get-songs' && response.status === 200)  {
+                        songHTML(content, obj);
+                    } else if (sectionID === 'search-for-album' && response.status === 200) {
+                        albumHTML(content, obj);
+                    } else if (sectionID === 'search-for-song' && response.status === 200) {
+                        songHTML(content, obj);
+                    }else if (sectionID === 'get-by-lyrics' && response.status === 200) {
+                        songHTML(content, obj);
+                    }
+                    if (obj.message) {
+                        content.innerHTML += `<p>Message: ${obj.message}</p>`;
+                    }
                 }
-                console.log(obj.message);
-                if (obj.message) {
-                    content.innerHTML += `<p>Message: ${obj.message}</p>`;
-                }
+            } else {
+                content.innerHTML = ``;
+                const type = response.headers.get('Content-Type');
+                const length = response.headers.get('Content-Length');
+                content.innerHTML += `<p>Content-Type: ${type}</p>`;
+                content.innerHTML += `<p>Content-Length: ${length} bytes</p>`;
             }
         };
 
-        const albumHTML = (content, obj) => {
-            content.innerHTML += `<h3>Low Roar Album Search</h3>`;
+        const albumHTML =  (content, obj) => {
+            content.innerHTML = `<h3>Low Roar Album Search</h3>`;
+            // Album Get undo button.
+            const undoButton = document.createElement('button');
+            undoButton.textContent = "Undo";
+            undoButton.addEventListener('click', () => {
+                content.innerHTML = '';
+                console.log("album cleared");
+            });
+            content.appendChild(undoButton);
+
             obj.forEach(album => {
-                content.innerHTML += `
-                <div class="album">
-                    <img src="${album.CoverImage}" alt="The album cover for Low Roar's ${album.AlbumTitle}" width="100"><br>
-                    <h4>${album.AlbumTitle} (${album.Released})</h4>
-                    <b>Label: </b>${album.Label}<br>
-                    <b>Length: </b>${album.Length}<br>
-                    <div class="newlines"> ${album.Description}</div><br>
-                    <a href="${album.YoutubeURL}" target="_blank">YouTube</a> |
-                    <a href="${album.SpotifyURL}" target="_blank">Spotify</a> |
-                    <a href="${album.AppleURL}" target="_blank">Apple</a> |
-                    <a href="${album.WikiURL}" target="_blank">Wikipedia</a>
-                    <hr>
-                </div>
+                    const albumDiv = document.createElement('div');
+                    albumDiv.className = 'album';
+                    albumDiv.innerHTML = `
+                        <div class="image">
+                            <img src="${album.CoverImage}" alt="The album cover for Low Roar's ${album.AlbumTitle}" width="100"><br>
+                            <h2>${album.AlbumTitle} (${album.Released})</h2>
+                            <h3>${album.AlbumArtist}</h3>
+                        </div>
+                        <div class="album-text">
+                            <div class="album-info">
+                                <h3>Details</h3><br>
+                                <div class="newlines">${album.Description}</div>
+                            </div>
+                            <div class="album-bottom">
+                                <p>${album.Label}</p>
+                                <p>${album.Length} minutes</p>
+                            </div>
+                        </div>
+                        <div class="links">
+                            <a href="${album.YoutubeURL}" target="_blank"><img src="/getImage?image=youtube.png" alt="YouTube"></a>
+                            <a href="${album.SpotifyURL}" target="_blank"><img src="/getImage?image=spotify.png" alt="Spotify"></a>
+                            <a href="${album.AppleURL}" target="_blank"><img src="/getImage?image=apple.png" alt="Apple Music"></a>
+                            <a href="${album.WikiURL}" target="_blank"><img src="/getImage?image=wiki.png" alt="Wikipedia"></a>
+                        </div>
+                        <hr>
+                    `;
+                    content.appendChild(albumDiv);
+                });
+        };
+
+        // Our Song HTML. Used anytime songs are meant to be displayed on screen.
+        const songHTML = async (content, obj) => {
+            content.innerHTML = `
+                <h3>Low Roar Songs</h3>
+                <div class="song-grid"></div>
+            `;
+            const grid = content.querySelector('.song-grid');         
+            const rowSize = 3;
+
+            // Song Get undo button.
+            const undoButton = document.createElement('button');
+            undoButton.textContent = "Undo";
+            undoButton.addEventListener('click', () => {
+                content.innerHTML = '';
+            });
+            // insertBefore so it doesn't get put at the bottom of the grid
+            content.insertBefore(undoButton, grid);
+            
+            // Used a lot of Node documentation for this, especially for div creation and appending.
+            // This is all so lyrics show up in the correct space, essentially- otherwise lyrics
+            // would break the entire page.
+            for (let i = 0; i < obj.length; i += rowSize) {
+                const rowDiv = document.createElement('div');
+                rowDiv.className = 'song-row';
+                rowDiv.style.display = 'flex';
+                rowDiv.style.justifyContent = 'center';
+                rowDiv.style.gap = '12px';
+                rowDiv.style.flexWrap = 'nowrap';
+
+                for (let j = i; j < i + rowSize && j < obj.length; j++) {
+                    const song = obj[j];
+
+                    const cardDiv = document.createElement('div');
+                    cardDiv.className = 'song-card';
+                    cardDiv.innerHTML = `
+                        <img src="${song.CoverImage}" alt="${song.SongName}'s album cover">
+                        <div class="song-info">
+                            <h4>${song.SongName}</h4>
+                            <h3>${song.Artist || 'Unknown'}</h3>
+                            <div class="details">
+                                <span>Length: ${song.Length}</span>
+                                ${song.Rating ? `<span>Rating: ${song.Rating}</span>` : ''}
+                            </div>
+                            <button class="play-preview">Get Preview</button>
+                            <button class="show-lyrics" data-index="${j}">Show Lyrics</button>
+                        </div>
+                    `;
+                    rowDiv.appendChild(cardDiv);
+                }
+
+                // Append row to grid
+                grid.appendChild(rowDiv);
+            }
+
+            document.querySelectorAll('.play-preview').forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    const songInfoDiv = e.target.parentElement;
+                    const songName = songInfoDiv.querySelector('h4').textContent;
+                    const artist = songInfoDiv.querySelector('h3').textContent;
+
+                    e.target.textContent = "Loading...";
+
+                    const previewURL = await fetchPreview(songName, artist);
+
+                    const audioEl = document.createElement('audio');
+                    audioEl.controls = true;
+                    audioEl.src = previewURL;
+                    e.target.replaceWith(audioEl);
+                });
+            });
+
+            let currentLyrics = null; 
+
+            grid.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('show-lyrics')) return;
+
+                const button = e.target;
+                const index = parseInt(button.dataset.index);
+                const song = obj[index];
+
+                // Find the row containing this song
+                const rowDivs = Array.from(grid.querySelectorAll('.song-row'));
+                const rowIndex = Math.floor(index / 3); // 3 cards per row
+                const rowDiv = rowDivs[rowIndex];
+
+                // If clicking the same song whose lyrics are already open, just hide it
+                if (currentLyrics && currentLyrics.previousSongIndex === index) {
+                    currentLyrics.remove();
+                    currentLyrics = null;
+                    button.textContent = "Show Lyrics";
+                    return;
+                }
+
+                // Remove any existing lyrics from other songs
+                if (currentLyrics) {
+                    currentLyrics.remove();
+                }
+
+                // Reset all buttons to default text
+                document.querySelectorAll('.show-lyrics').forEach(btn => {
+                    btn.textContent = "Show Lyrics";
+                });
+
+                // Create new lyrics section
+                const lyricsDiv = document.createElement('div');
+                lyricsDiv.className = 'lyrics-section';
+                lyricsDiv.innerHTML = `
+                    <h4>${song.SongName}</h4>
+                    <div class="newlines">${song.Lyrics}</div>
                 `;
+
+                // Keep track of which song this lyrics belongs to
+                lyricsDiv.previousSongIndex = index;
+
+                rowDiv.insertAdjacentElement('afterend', lyricsDiv);
+
+                // Set this button to "Hide Lyrics"
+                button.textContent = "Hide Lyrics";
+
+                currentLyrics = lyricsDiv;
             });
         };
 
-        const songHTML = (content, obj) => {
-            content.innerHTML += `<h3>Low Roar Songs</h3>`;
-            obj.forEach(song => {
-                content.innerHTML += `
-                <div class="song">
-                    <img src="${song.CoverImage}" alt="${song.SongName}'s album's cover image." width="100"><br>
-                    <h2>${song.SongName}</h2>`;
-                    if (song.Rating) { content.innerHTML += `<b>Rating: </b>${song.Rating}`};
-                    content.innerHTML +=` 
-                    <b>Length: </b>${song.Length}<br>
-                    <b>Lyrics</b><br><div class="newlines">${song.Lyrics}</div>
-                    <hr>
-                </div>
-                `;
-            });
+        const fetchPreview = async (songName, artistName) => {
+            const url = `/getSongPreview?song=${encodeURIComponent(songName)}&artist=${encodeURIComponent(artistName)}`;
+            const response = await fetch(url);
+            if (response.status === 200) {
+                const data = await response.json();
+                return data.previewUrl;
+            }
+            return;
         };
-
 
 
         const requestUpdate = async (userForm, sectionID) => {
@@ -117,7 +270,8 @@
             if (nameForm === addYourOwnSongForm) {
                 titleField = nameForm.querySelector("#yourTitleField");
                 lengthField = nameForm.querySelector("#yourLengthField");
-                formData = `title=${titleField.value}&length=${lengthField.value}`;
+                albumField = nameForm.querySelector("#yourAlbumField");
+                formData = `title=${titleField.value}&length=${lengthField.value}&album=${albumField.value}`;
             } else if (nameForm === rateSongForm) {
                 rateTitleField = nameForm.querySelector("#rateTitleField");
                 rateField = nameForm.querySelector("#rateField");
@@ -137,6 +291,7 @@
         };
 
         const init = () => {
+
             const albumsForm = document.querySelector('#albumsForm');
             const songsForm = document.querySelector('#songsForm');
             const albumSearchForm = document.querySelector('#albumSearchForm');
@@ -194,6 +349,11 @@
             // post forms
             addYourOwnSongForm.addEventListener('submit', addSong);
             rateSongForm.addEventListener('submit', addRating);
+
+            // scrolls to top left of page after slight delay.
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+            }, 30);
         };
 
         window.onload = init;
@@ -202,120 +362,137 @@
 </head>
 
 <body>
-    <h2 class="websiteTitle">Low Roar</h2>
-    <div class="apiAccess">
-        <!-- In here, we will simply return all albums..-->
-        <h2>All Albums</h2>
-        <form id="albumsForm" action="/getAlbums" method="get">
-            <select id="methodSelect">
-                <option value="get">GET</option>
-                <option value="head">HEAD</option>
-            </select>
-            <input type="submit" value="Search" />
-        </form>
-        <div class="content-block">
-            <section id="get-albums">
-            </section>
-        </div>
+    <!-- Our table of contents, which will allows the user to jump between sections, hassle free.-->
+    <div class="floating-table-of-contents">
+        <h3>Endpoints</h3>
+        <ul>
+            <li><a href="#get-albums">All Albums</a></li>
+            <li><a href="#get-songs">All Songs</a></li>
+            <li><a href="#search-for-album">Album Search</a></li>
+            <li><a href="#search-for-song">Song Search</a></li>
+            <li><a href="#get-by-lyrics">Lyrical Search</a></li>
+            <li><a href="#post-song">Add Your Own Song</a></li>
+            <li><a href="#post-rating">Rate Song</a></li>
+        </ul>
     </div>
-    <div class="apiAccess">
-        <!-- In here, we will simply return all songs.-->
-        <h2>All Songs</h2>
-        <form id="songsForm" action="/getSongs" method="get">
-            <select id="methodSelect">
-                <option value="get">GET</option>
-                <option value="head">HEAD</option>
-            </select>
-            <input type="submit" value="Search" />
-        </form>
-        <div class="content-block">
-            <section id="get-songs">
-            </section>
+    <div class="body-content">
+        <h2 class="websiteTitle">Low Roar</h2>
+        <div class="apiAccess">
+            <!-- In here, we will simply return all albums..-->
+            <h2>All Albums</h2>
+            <form id="albumsForm" action="/getAlbums" method="get">
+                <select id="methodSelect">
+                    <option value="get">GET</option>
+                    <option value="head">HEAD</option>
+                </select>
+                <input type="submit" value="Search" />
+            </form>
+            <div class="content-block">
+                <section id="get-albums">
+                </section>
+            </div>
         </div>
-    </div>
-    <div class="apiAccess">
-        <!-- In here, we will return a Low Roar Album by title and/or by year. -->
-        <h2>Album Search</h3>
-        <form id="albumSearchForm" action="/albumSearch" method="get">
-            <label for="title">Title: </label>
-            <input id="albumTitleField" type="text" name="title"/>
-            <label for="year">Year: </label>
-            <input id="albumYearField" type="text" name="year"/>
-            <select id="methodSelect">
-                <option value="get">GET</option>
-                <option value="head">HEAD</option>
-            </select>
-            <input type="submit" value="Search" />
-        </form>
-        <div class="content-block">
-            <section id="search-for-album">
-            </section>
+        <div class="apiAccess">
+            <!-- In here, we will simply return all songs.-->
+            <h2>All Songs</h2>
+            <form id="songsForm" action="/getSongs" method="get">
+                <select id="methodSelect">
+                    <option value="get">GET</option>
+                    <option value="head">HEAD</option>
+                </select>
+                <input type="submit" value="Search" />
+            </form>
+            <div class="content-block">
+                <section id="get-songs">
+                </section>
+            </div>
         </div>
-    </div>
-    <div class="apiAccess">
-        <!-- In here, we will search for Low Roar Albums by title and/or by year. -->
-        <h2>Song Search</h3>
-        <form id="songSearchForm" action="/songSearch" method="get">
-            <label for="title">Title: </label>
-            <input id="songTitleField" type="text" name="title"/>
-            <label for="year">Year: </label>
-            <input id="songYearField" type="text" name="year"/>
-            <select id="methodSelect">
-                <option value="get">GET</option>
-                <option value="head">HEAD</option>
-            </select>
-            <input type="submit" value="Search" />
-        </form>
-        <div class="content-block">
-            <section id="search-for-song">
-            </section>
+        <div class="apiAccess">
+            <!-- In here, we will return a Low Roar Album by title and/or by year. -->
+            <h2>Album Search</h3>
+            <form id="albumSearchForm" action="/albumSearch" method="get">
+                <label for="title">Title: </label>
+                <input id="albumTitleField" type="text" name="title"/>
+                <label for="year">Year: </label>
+                <input id="albumYearField" type="text" name="year"/>
+                <select id="methodSelect">
+                    <option value="get">GET</option>
+                    <option value="head">HEAD</option>
+                </select>
+                <input type="submit" value="Search" />
+            </form>
+            <div class="content-block">
+                <section id="search-for-album">
+                </section>
+            </div>
         </div>
-    </div>
-    <div class="apiAccess">
-        <!-- In here, we will search for a Low Roar song by it's lyrics.-->
-        <h2>Lyrical Search</h2>
-        <form id="lyricalSearchForm" action="/getSongFromLyrics" method="get">
-            <label for="lyrics">Lyrics: </label>
-            <input id="lyricField" type="text" name="lyrics"/>
-            <select id="methodSelect">
-                <option value="get">GET</option>
-                <option value="head">HEAD</option>
-            </select>
-            <input type="submit" value="Search" />
-        </form>
-        <div class="content-block">
-            <section id="get-by-lyrics">
-            </section>
+        <div class="apiAccess">
+            <!-- In here, we will search for Low Roar Albums by title and/or by year. -->
+            <h2>Song Search</h3>
+            <form id="songSearchForm" action="/songSearch" method="get">
+                <label for="title">Title: </label>
+                <input id="songTitleField" type="text" name="title"/>
+                <label for="year">Year: </label>
+                <input id="songYearField" type="text" name="year"/>
+                <select id="methodSelect">
+                    <option value="get">GET</option>
+                    <option value="head">HEAD</option>
+                </select>
+                <input type="submit" value="Search" />
+            </form>
+            <div class="content-block">
+                <section id="search-for-song">
+                </section>
+            </div>
         </div>
-    </div>
-    <div class="apiAccess">
-        <!-- In here, we will add a song by it's title and author.-->
-        <h2>Add Your Own Song</h2>
-        <form id="addYourOwnSongForm" action="/addSong" method="post">
-            <label for="title">Title: </label>
-            <input id="yourTitleField" type="text" name="title"/>
-            <label for="length">Length: </label>
-            <input id="yourLengthField" type="text" name="length"/>
-            <input type="submit" value="Add Song" />
-        </form>
-        <div class="content-block">
-            <section id="post-song">
-            </section>
+        <div class="apiAccess">
+            <!-- In here, we will search for a Low Roar song by it's lyrics.-->
+            <h2>Lyrical Search</h2>
+            <form id="lyricalSearchForm" action="/getSongFromLyrics" method="get">
+                <label for="lyrics">Lyrics: </label>
+                <input id="lyricField" type="text" name="lyrics"/>
+                <select id="methodSelect">
+                    <option value="get">GET</option>
+                    <option value="head">HEAD</option>
+                </select>
+                <input type="submit" value="Search" />
+            </form>
+            <div class="content-block">
+                <section id="get-by-lyrics">
+                </section>
+            </div>
         </div>
-    </div>
-    <div class="apiAccess">
-        <!-- In here, we will add a rating to a song already in the dataset..-->
-        <h2>Rate Song</h2>
-        <form id="rateSongForm" action="/rateSong" method="post">
-            <label for="title">Title: </label>
-            <input id="rateTitleField" type="text" name="title"/>
-            <label for="rating">Rating: </label>
-            <input id="rateField" type="number" name="rating" min="1" max="5" step="1"/>
-            <input type="submit" value="Submit Rating" />
-        </form>
-        <div class="content-block">
-            <section id="post-rating">
-            </section>
+        <div class="apiAccess">
+            <!-- In here, we will add a song by it's title and author.-->
+            <h2>Add Your Own Song</h2>
+            <form id="addYourOwnSongForm" action="/addSong" method="post">
+                <label for="title">Title: </label>
+                <input id="yourTitleField" type="text" name="title"/>
+                <label for="length">Length: </label>
+                <input id="yourLengthField" type="text" name="length"/>
+                <label for="Album">Album: </label>
+                <input id="yourAlbumField" type="text" name="album"/>
+                <input type="submit" value="Add Song" />
+            </form>
+            <div class="content-block">
+                <section id="post-song">
+                </section>
+            </div>
+        </div>
+        <div class="apiAccess">
+            <!-- In here, we will add a rating to a song already in the dataset..-->
+            <h2>Rate Song</h2>
+            <form id="rateSongForm" action="/addRating" method="post">
+                <label for="title">Title: </label>
+                <input id="rateTitleField" type="text" name="title"/>
+                <label for="rating">Rating: </label>
+                <input id="rateField" type="number" name="rating" min="1" max="5" step="1"/>
+                <input type="submit" value="Submit Rating" />
+            </form>
+            <div class="content-block">
+                <section id="post-rating">
+                </section>
+            </div>
         </div>
     </div>
 

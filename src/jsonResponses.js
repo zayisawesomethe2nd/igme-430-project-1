@@ -1,6 +1,9 @@
+// https://stackoverflow.com/questions/19253753/javascript-find-json-value
+
 const fs = require('fs');
 
 const lowRoarData = JSON.parse(fs.readFileSync('dataset/low-roar.json', 'utf8'));
+
 
 // Takes request, response, status code, and object to send 
 // returns with a JSON object. 
@@ -8,7 +11,7 @@ const respondJSON = (request, response, status, object) => {
     const content = JSON.stringify(object);
     const headers = {
         'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(content, 'utf8'),
+        'Content-Length': Buffer.byteLength(content, 'utf8'), // gives the BYTE length of the content
     };
 
     response.writeHead(status, headers);
@@ -27,49 +30,55 @@ const getAlbums = (request, response) => {
     // Goes through the dataset to grab all album objects with all of their associated data
     for (const album of lowRoarData) {
         albums.push({
-        ID: album.ID,
-        AlbumTitle: album.AlbumTitle,
-        CoverImage: album.CoverImage,
-        Released: album.Released,
-        Length: album.Length,
-        Label: album.Label,
-        Description: album.Description,
-        YoutubeURL: album.YoutubeURL,
-        SpotifyURL: album.SpotifyURL,
-        AppleURL: album.AppleURL,
-        WikiURL: album.WikiURL,
-        });
+            ID: album.ID,
+            AlbumTitle: album.AlbumTitle,
+            AlbumArtist: album.AlbumArtist,
+            CoverImage: `/getImage?image=${album.CoverImage}`,
+            Released: album.Released,
+            Length: album.Length,
+            Label: album.Label,
+            Description: album.Description,
+            YoutubeURL: album.YoutubeURL,
+            SpotifyURL: album.SpotifyURL,
+            AppleURL: album.AppleURL,
+            WikiURL: album.WikiURL,
+        });        
     }
 
+
     return respondJSON(request, response, 200, albums);
+
 };
 
 // Gets all song (track) data.
 const getSongs = (request, response) => {
-  const songs = [];
+    const songs = [];
 
-  // First, enter an album, and then get the tracks from that album. This is a nested for loop
-  // to get all tracks from all albums. Also gets the cover image from the associated track album.
-  for (const album of lowRoarData) {
-    for (const track of album.Tracks) {
-        const trackData = {
-            CoverImage: album.CoverImage,
-            SongName: track.Name,
-            Length: track.Length,
-            Lyrics: track.Lyrics,
-        };
+    // First, enter an album, and then get the tracks from that album. This is a nested for loop
+    // to get all tracks from all albums. Also gets the cover image from the associated track album.
+    for (const album of lowRoarData) {
+        for (const track of album.Tracks) {
+            const trackData = {
+                CoverImage: `/getImage?image=${album.CoverImage}`,
+                SongName: track.Name,
+                Length: track.Length,
+                Lyrics: track.Lyrics,
+            };
 
-        // IF there is a rating, add it to the song array
-        console.log(track.Rating);
-        if (track.Rating !== undefined) {
-            trackData.Rating = track.Rating;
+            // IF there is a rating, add it to the song array
+            if (track.Rating !== undefined) {
+                trackData.Rating = track.Rating;
+            }
+            // If there is no track artist, use album artist
+            if (!track.TrackArtist) {
+                trackData.Artist = album.AlbumArtist;
+            }
+            songs.push(trackData);
+
         }
-        songs.push(trackData);
-
     }
-  }
 
-  return respondJSON(request, response, 200, songs);
+    return respondJSON(request, response, 200, songs);
 }
 
 // Uses title and year inputs from the user to search for the appropriate album. Neither is necessary
@@ -97,18 +106,19 @@ const albumSearch = (request, response) => {
             matchesTitle = true;  // If not given, ignore this basically
         }
 
-        // Check year -> will be changed later 
+        // Check year 
         if (yearSearchTerm) {
             matchesYear = album.Released.toString().includes(yearSearchTerm);
         } else {
             matchesYear = true;
         }
-
+        // If we have a matching title and year, add the album to our results. Can return multiple albums.
         if (matchesTitle && matchesYear) {
             results.push({
                 ID: album.ID,
                 AlbumTitle: album.AlbumTitle,
-                CoverImage: album.CoverImage,
+                AlbumArtist: album.AlbumArtist,
+                CoverImage: `/getImage?image=${album.CoverImage}`,
                 Released: album.Released,
                 Length: album.Length,
                 Label: album.Label,
@@ -146,16 +156,19 @@ const songSearch = (request, response) => {
             if (titleSearchTerm && !track.Name.toLowerCase().includes(titleSearchTerm)) continue;
 
             const trackData = {
-                CoverImage: album.CoverImage,
+                CoverImage: `/getImage?image=${album.CoverImage}`,
                 SongName: track.Name,
                 Length: track.Length,
                 Lyrics: track.Lyrics,
             };
 
             // IF there is a rating, add it to the song array
-            console.log(track.Rating);
             if (track.Rating !== undefined) {
                 trackData.Rating = track.Rating;
+            }
+            // If there is no track artist, use album artist
+            if (!track.TrackArtist) {
+                trackData.Artist = album.AlbumArtist;
             }
             songs.push(trackData);
             }
@@ -185,7 +198,7 @@ const lyricalSearch = (request, response) => {
         for (const track of album.Tracks) {
         if (track.Lyrics && track.Lyrics.toLowerCase().includes(searchTerm)) {
             results.push({
-            CoverImage: album.CoverImage,
+            CoverImage: `/getImage?image=${album.CoverImage}`,
             SongName: track.Name,
             Length: track.Length,
             Lyrics: track.Lyrics,
@@ -197,30 +210,42 @@ const lyricalSearch = (request, response) => {
     return respondJSON(request, response, 200, results);
 };
 
+// Adds a song to the specified album, with the specified data.
 const addSong = (request, response) => {
-    const { title, length } = request.body;
+    const { title, length, album} = request.body;
 
     // Validate inputs
     if (!title || !length) {
         return respondJSON(request, response, 400, {
-            message: 'Both title and length are required.',
+            message: 'Title and length fields are required.',
             id: 'MissingFields',
         });
     }
 
-    // get the unorganizedAlbum data field
-    const unorganizedAlbum = lowRoarData.find(album => album.ID === 0);
-    if (!unorganizedAlbum) {
-        return respondJSON(request, response, 500, {
-            message: 'Unorganized album not found in dataset.',
-            id: 'InternalServerError',
-        });
+    //Locating the album
+    let targetAlbum;
+    if (album) {
+        targetAlbum = lowRoarData.find(a => a.AlbumTitle.toLowerCase() === album.toLowerCase());
     }
+
+    // get the unorganizedAlbum data field. only done if no album is given.
+    if (!targetAlbum) {
+        targetAlbum = lowRoarData.find(a => a.ID === 0);
+        if (!targetAlbum) {
+            return respondJSON(request, response, 500, {
+                message: 'Unorganized album not found in dataset.',
+                id: 'InternalServerError',
+            });
+        }
+    }
+
     
     // No changes are confirmed yet, but we can set the status code to 204 for now
     let responseCode = 204;
 
-    const existingSong = unorganizedAlbum.Tracks.find(
+    // Checking if the song already exists, so we can replace some of the data in it.
+    // Will cause lyrics to be deleted.
+    const existingSong = targetAlbum.Tracks.find(
         track => track.Name.toLowerCase() === title.toLowerCase()
     );
 
@@ -229,27 +254,26 @@ const addSong = (request, response) => {
         const newSong = {
             Name: title,
             Length: length,
+            Lyrics: '',
         };
-        unorganizedAlbum.Tracks.push(newSong);
-        responseCode = 201;
+        targetAlbum.Tracks.push(newSong);
+        const responseJSON = {
+            message: 'Song added successfully.',
+            id: 'SongAdded',
+        }; 
+        return respondJSON(request, response, 201, responseJSON);
     } else {
         existingSong.Length = length;
+        existingSong.Lyrics = '';
+        return respondJSON(request, response, 204, {});
     }
-
-    if (responseCode === 201) {
-        return respondJSON(request, response, 201, {
-            message: 'Song added successfully.',
-            song: { title, length },
-        });
-    }
-
-    return respondJSON(request, response, 204, {});
 
 };
 
 // Adds rating data to an track object.
 const addRating = (request, response) => {
     const { title, rating } = request.body;
+    console.log("help")
 
     if (!title || !rating) {
         return respondJSON(request, response, 400, {
@@ -281,12 +305,10 @@ const addRating = (request, response) => {
 
     // Update or add the rating
     foundSong.Rating = rating;
-    console.log(lowRoarData)
 
 
     return respondJSON(request, response, 200, {
         message: `Rating for "${foundSong.Name}" updated successfully.`,
-        album: foundAlbum.Name,
         song: {
             title: foundSong.Name,
             rating: foundSong.Rating,
